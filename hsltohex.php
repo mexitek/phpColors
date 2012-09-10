@@ -13,9 +13,9 @@
             throw new Exception("Param was not an HSL array");
         }
         
-        list($H,$S,$L) = array( $hsl['H'],$hsl['S'],$hsl['L'] );
+        list($H,$S,$L) = array( $hsl['H']/360,$hsl['S'],$hsl['L'] );
         
-        if( $S == 0 ) {
+	if( $S == 0 ) {
             $r = $L * 255;
             $g = $L * 255;
             $b = $L * 255;
@@ -29,13 +29,13 @@
             
             $var_1 = 2 * $L - $var_2;
             
-            $r = 255 * $this->huetorgb( $var_1, $var_2, $H + (1/3) );
+	    $r = 255 * $this->huetorgb( $var_1, $var_2, $H + (1/3) );
             $g = 255 * $this->huetorgb( $var_1, $var_2, $H );
             $b = 255 * $this->huetorgb( $var_1, $var_2, $H - (1/3) );
             
         }
-        
-        return dechex($r).dechex($g).dechex($b);
+
+	return dechex($r)." ".dechex($g)." ".dechex($b);
     }
     
     /**
@@ -53,7 +53,7 @@
         }
         
         if( (6*$vH) < 1 ) { 
-               return ($v1 + ($v2 - $v1)) * 6 * $vH;       
+               return ($v1 + ($v2 - $v1) * 6 * $vH);       
         }
         
         if( (2*$vH) < 1 ) { 
@@ -61,7 +61,7 @@
         }
         
         if( (3*$vH) < 2 ) { 
-            return ($v1 + ($v2-$v1)) * ( (2/3)-$vH ) * 6; 
+            return ($v1 + ($v2-$v1) * ( (2/3)-$vH ) * 6); 
         }
         
         return $v1;

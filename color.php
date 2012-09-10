@@ -1,0 +1,290 @@
+<?php
+/**
+ *
+ * A color utility that helps manipulate HEX colors
+ *
+ * @author Arlo Carreon <arlo.carreon@bookit.com>
+ *
+ */
+class Color {
+	
+	/**
+	 *  You need to check if you were given a good hex string
+	 * @param string $hex
+	 * @throws Exception "Bad color format"
+	 */
+	private static function _checkHex( $hex  ) {
+		// Strip # sign is present
+		$color = str_replace("#", "", $hex);
+
+		// Make sure it's 6 digits
+		if( strlen($color) == 3 ) {
+			$color = $color[0].$color[0].$color[1].$color[1].$color[2].$color[2];
+		} else if( strlen($color) != 6 ) {
+			throw new Exception("HEX color needs to be 6 or 3 digits long");
+		}
+		
+		return $color;
+	}
+	
+	/**
+	 * Given a HEX string returns a HSL array equilavent.
+	 * @param type $color
+	 * @return array HSL associative array
+	 */
+	public static function hexToHsl( $color ){
+		
+		// Sanity check
+		$color = static::_checkHex($color);
+		
+		// Convert HEX to DEC
+		$R = hexdec($color[0].$color[1]);
+		$G = hexdec($color[2].$color[3]);
+		$B = hexdec($color[4].$color[5]);
+
+		$HSL = array();
+
+		$var_R = ($R / 255);
+		$var_G = ($G / 255);
+		$var_B = ($B / 255);
+
+		$var_Min = min($var_R, $var_G, $var_B);
+		$var_Max = max($var_R, $var_G, $var_B);
+		$del_Max = $var_Max - $var_Min;
+
+		$L = ($var_Max + $var_Min)/2;
+
+		if ($del_Max == 0)
+		{
+			$H = 0;
+			$S = 0;
+		}
+		else
+		{
+			if ( $L < 0.5 ) $S = $del_Max / ( $var_Max + $var_Min );
+			else            $S = $del_Max / ( 2 - $var_Max - $var_Min );
+
+			$del_R = ( ( ( $var_Max - $var_R ) / 6 ) + ( $del_Max / 2 ) ) / $del_Max;
+			$del_G = ( ( ( $var_Max - $var_G ) / 6 ) + ( $del_Max / 2 ) ) / $del_Max;
+			$del_B = ( ( ( $var_Max - $var_B ) / 6 ) + ( $del_Max / 2 ) ) / $del_Max;
+
+			if      ($var_R == $var_Max) $H = $del_B - $del_G;
+			else if ($var_G == $var_Max) $H = ( 1 / 3 ) + $del_R - $del_B;
+			else if ($var_B == $var_Max) $H = ( 2 / 3 ) + $del_G - $del_R;
+
+			if ($H<0) $H++;
+			if ($H>1) $H--;
+		}
+
+		$HSL['H'] = ($H*360);
+		$HSL['S'] = $S;
+		$HSL['L'] = $L;
+
+		return $HSL;
+	}
+	
+	/**
+	 *  Given a HSL associative array returns the equilavent HEX string
+	 * @param array $hsl
+	 * @return string HEX string
+	 * @throws Exception "Bad HSL Array"
+	 */
+	public static function hslToHex( $hsl = array() ){
+		 // Make sure it's HSL
+		if(     empty($hsl) || !isset($hsl["H"]) || !isset($hsl["S"]) || !isset($hsl["L"]) ) {
+			throw new Exception("Param was not an HSL array");
+		}
+
+		list($H,$S,$L) = array( $hsl['H']/360,$hsl['S'],$hsl['L'] );
+
+		if( $S == 0 ) {
+			$r = $L * 255;
+			$g = $L * 255;
+			$b = $L * 255;
+		} else {
+
+			if($L<0.5) {
+				$var_2 = $L*(1+$S);
+			} else {
+				$var_2 = ($L+$S) - ($S*$L);
+			}
+
+			$var_1 = 2 * $L - $var_2;
+
+		$r = round(255 * static::_huetorgb( $var_1, $var_2, $H + (1/3) ));
+			$g = round(255 * static::_huetorgb( $var_1, $var_2, $H ));
+			$b = round(255 * static::_huetorgb( $var_1, $var_2, $H - (1/3) ));
+
+		}
+
+		// Convert to hex
+		$r = dechex($r);
+		$g = dechex($g);
+		$b = dechex($b);
+
+		// Make sure we get 2 digits for decimals
+		$r = (strlen("".$r)==1) ? "0".$r:$r;
+		$g = (strlen("".$g)==1) ? "0".$g:$g;
+		$b= (strlen("".$b)==1) ? "0".$b:$b;
+
+		return $r.$g.$b;
+	}
+	
+	/**
+	 * Given a HEX value, returns a darker color. If no desired amount provided, then the color halfway between
+	 * given HEX and black will be returned.
+	 * @param string $color
+	 * @param int $amount
+	 * @return string Darker HEX value
+	 */
+	public static function darken( $color, $amount = FALSE ){
+		// Sanity check
+		$color = static::_checkHex($color);
+		// Convert into HSL
+		$hsl = static::hexToHsl($color);
+		// Darken
+		$hsl = static::_darken($hsl, $amount);
+		// Return as HEX
+		return static::hslToHex($hsl);
+		
+	}
+	
+	/**
+	 * Given a HEX value, returns a lighter color. If no desired amount provided, then the color halfway between
+	 * given HEX and white will be returned.
+	 * @param string $color
+	 * @param int $amount
+	 * @return string LIghter HEX value
+	 */
+	public static function lighten( $color, $amount = FALSE ){
+		// Sanity check
+		$color = static::_checkHex($color);
+		// Convert into HSL
+		$hsl = static::hexToHsl($color);
+		// Darken
+		$hsl = static::_lighten($hsl, $amount);
+		// Return as HEX
+		return static::hslToHex($hsl);
+	}
+	
+	public static function makeGradient( $color ) {
+		// Sanity check
+		$color = static::_checkHex($color);
+		
+		// Decide which color needs to be made
+		if( static::isLight($color) ) {
+			$lightColor = $color;
+			$darkColor = static::darken($color);
+		} else {
+			$lightColor = static::lighten($color);
+			$darkColor = $color;
+		}
+		
+		// Return our gradient array
+		return array( "light" => $lightColor, "dark" => $darkColor );
+	}
+			
+	
+	/**
+	 * Returns whether or not given color is considered "light"
+	 * @param string $color
+	 * @return boolean
+	 */
+	public static function isLight( $color ){
+		// Sanity check
+		$color = static::_checkHex($color);
+		// Convert into HSL
+		$hsl = static::hexToHsl($color);
+		// Check our lightness attribute
+		return ($hsl["L"] >= 0.5);
+	}
+	
+	/**
+	 * Returns whether or not a given color is considered "dark"
+	 * @param type $color
+	 * @return boolean
+	 */
+	public static function isDark( $color ){
+		// Sanity check
+		$color = static::_checkHex($color);
+		// Convert into HSL
+		$hsl = static::hexToHsl($color);
+		// Check our lightness attribute
+		return ($hsl["L"] >= 0.5);
+	}
+	
+	/**
+	 * Darkens a given HSL array
+	 * @param array $hsl
+	 * @param int $amount
+	 * @return array $hsl
+	 */
+	private static function _darken( $hsl, $amount = 0){
+		// Check if we were provided a number
+		if( $amount ) {
+			$hsl['L'] = ($hsl['L'] * 100) - $amount;
+			$hsl['L'] = ($hsl['L'] < 0) ? 0:$hsl['L']/100;
+
+			return;
+		}
+
+		// We need to find out how much to darken
+		$hsl['L'] = $hsl['L']  /2 ;
+		
+		return $hsl;
+	}
+	
+	/**
+	 * Lightens a given HSL array
+	 * @param array $hsl
+	 * @param int $amount
+	 * @return array $hsl
+	 */
+	private static function _lighten( $hsl, $amount = 0){
+		// Check if we were provided a number
+		if( $amount ) {
+			$hsl['L'] = ($hsl['L'] * 100) + $amount;
+			$hsl['L'] = ($hsl['L'] > 100 )? 1:$hsl['L']/100;
+
+			return;
+		}
+
+		// We need to find out how much to lighten
+		$hsl['L'] += (1-$hsl['L'])  /2 ;
+		
+		return $hsl;
+	}
+	
+	/**
+	 * Given a Hue, returns corresponding RGB value
+	 * @param type $v1
+	 * @param type $v2
+	 * @param type $vH
+	 * @return int 
+	 */
+	private static function _huetorgb( $v1,$v2,$vH ) {
+		if( $vH < 0 ) {
+			$vH += 1;
+		}
+
+		if( $vH > 1 ) {
+			$vH -= 1;
+		}
+
+		if( (6*$vH) < 1 ) { 
+			   return ($v1 + ($v2 - $v1) * 6 * $vH);       
+		}
+
+		if( (2*$vH) < 1 ) { 
+			return $v2; 
+		}
+
+		if( (3*$vH) < 2 ) { 
+			return ($v1 + ($v2-$v1) * ( (2/3)-$vH ) * 6); 
+		}
+
+		return $v1;
+
+	}
+	
+}

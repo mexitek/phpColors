@@ -34,8 +34,8 @@
             $b = 255 * $this->huetorgb( $var_1, $var_2, $H - (1/3) );
             
         }
-
-	return dechex($r)." ".dechex($g)." ".dechex($b);
+	
+	return dechex(round($r)).dechex(round($g)).dechex(round($b));
     }
     
     /**

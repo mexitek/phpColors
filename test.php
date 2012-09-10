@@ -12,8 +12,8 @@ $testColor = "369";
 $testHSL = $getHSL->render($testColor);
 $testHEX = $getHEX->render($testHSL);        
 
-echo "Testing: $testColor ------\n";
-print_r($testHSL);
+//echo "Testing: $testColor ------\n";
+//print_r($testHSL);
 echo "\n-----------\n";
 print_r($testHEX);
 echo "\n-----------\n";

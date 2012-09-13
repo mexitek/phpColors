@@ -1,11 +1,39 @@
 # phpColors
 
-A series of PHP classes that let you manipulate colors.
+A series of PHP classes that let you manipulate colors. Just incase you ever need different shades of one color on the fly.
 
-## Current
-- HEX-To-HSL : Not working
-- HSL-To-HEX : Working
+## How it works
+Instantiate an object of the color class with a hex color string `$foo = new Color("336699")`.  That's it!  Now, call the methods you need for different color variants.
 
-## Goal
-- Darken.php : Takes a HEX and darkens X percentage. Will have to convert to HSL first, then decrease the L value.
-- Lighten.php : Takes a HEX and lightens X percentage. Will have to convert to HSL first, then increase the L value.
+## Available Methods
+- <hex string> *darken()*, *darken($amount)* : Allows you to obtain a darker shade of your color. Optionally you can decide to darken using a desired percentage.
+- <hex string> *lighten()*, *lighten($amount)* : Allows you to obtain a lighter shade of your color. Optionally you can decide to lighten using a desired percentage.
+- <bool> *isLight()*, *isLight($hex)* : Determins whether your color (or the provide param) is considered a "light" color. Returns `TRUE` if color is light.
+- <bool> *isDark()*, *isDark($hex)* : Determins whether your color (or the provide param) is considered a "dark" color. Returns `TRUE` if color is dark.
+- <array> *makeGradient()*, *makeGradient($amount)* : Returns an array with 2 indices `light` and `dark`, the initial color will either be selected for `light` or `dark` dependings on it's brightness, then the other color will be generated.  The optional param allows for a static lighten or darkened amount.
+_* If a darker is lighter color is automatically generated the class will choose the shade halfway between your color and black (for dark) or halfway between your color and white (for light)_
+
+## Examples
+
+```php
+
+// Initialize my color
+$myBlue = new Color("#336699");
+
+
+echo $myBlue->darken();
+// 1a334d
+
+echo $myBlue->lighten(); 
+// 8cb3d9
+
+echo $myBlue->isLight();
+// false
+
+echo $myBlue->isDark();
+// true
+
+print_r($myBlue->makeGradient());
+array( "light"=>"8cb3d9" ,"dark"=>"336699" )
+
+```

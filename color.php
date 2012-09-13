@@ -8,12 +8,14 @@
  */
 class Color {
 	
-	/**
-	 *  You need to check if you were given a good hex string
-	 * @param string $hex
-	 * @throws Exception "Bad color format"
+	private $_hex;
+	private $_hsl;
+	
+    /**
+	 * Instantiates the class with a HEX value
+	 * @param string $color
 	 */
-	private static function _checkHex( $hex  ) {
+	function __construct( $hex ) {
 		// Strip # sign is present
 		$color = str_replace("#", "", $hex);
 
@@ -24,18 +26,23 @@ class Color {
 			throw new Exception("HEX color needs to be 6 or 3 digits long");
 		}
 		
-		return $color;
+		$this->_hsl = self::hexToHsl( $color );
+		$this->_hex = $color;
 	}
+	
+	// ====================
+	// = Public Interface =
+	// ====================
 	
 	/**
 	 * Given a HEX string returns a HSL array equilavent.
-	 * @param type $color
+	 * @param string $color
 	 * @return array HSL associative array
 	 */
 	public static function hexToHsl( $color ){
 		
 		// Sanity check
-		$color = static::_checkHex($color);
+		$color = self::_checkHex($color);
 		
 		// Convert HEX to DEC
 		$R = hexdec($color[0].$color[1]);
@@ -111,9 +118,9 @@ class Color {
 
 			$var_1 = 2 * $L - $var_2;
 
-		$r = round(255 * static::_huetorgb( $var_1, $var_2, $H + (1/3) ));
-			$g = round(255 * static::_huetorgb( $var_1, $var_2, $H ));
-			$b = round(255 * static::_huetorgb( $var_1, $var_2, $H - (1/3) ));
+		$r = round(255 * self::_huetorgb( $var_1, $var_2, $H + (1/3) ));
+			$g = round(255 * self::_huetorgb( $var_1, $var_2, $H ));
+			$b = round(255 * self::_huetorgb( $var_1, $var_2, $H - (1/3) ));
 
 		}
 
@@ -125,7 +132,7 @@ class Color {
 		// Make sure we get 2 digits for decimals
 		$r = (strlen("".$r)==1) ? "0".$r:$r;
 		$g = (strlen("".$g)==1) ? "0".$g:$g;
-		$b= (strlen("".$b)==1) ? "0".$b:$b;
+		$b = (strlen("".$b)==1) ? "0".$b:$b;
 
 		return $r.$g.$b;
 	}
@@ -137,15 +144,11 @@ class Color {
 	 * @param int $amount
 	 * @return string Darker HEX value
 	 */
-	public static function darken( $color, $amount = FALSE ){
-		// Sanity check
-		$color = static::_checkHex($color);
-		// Convert into HSL
-		$hsl = static::hexToHsl($color);
+	public function darken( $amount = FALSE ){
 		// Darken
-		$hsl = static::_darken($hsl, $amount);
+		$darkerHSL = $this->_darken($this->_hsl, $amount);
 		// Return as HEX
-		return static::hslToHex($hsl);
+		return self::hslToHex($darkerHSL);
 		
 	}
 	
@@ -156,28 +159,21 @@ class Color {
 	 * @param int $amount
 	 * @return string LIghter HEX value
 	 */
-	public static function lighten( $color, $amount = FALSE ){
-		// Sanity check
-		$color = static::_checkHex($color);
-		// Convert into HSL
-		$hsl = static::hexToHsl($color);
-		// Darken
-		$hsl = static::_lighten($hsl, $amount);
+	public function lighten( $amount = FALSE ){
+		// Lighten
+		$lighterHSL = $this->_lighten($this->_hsl, $amount);
 		// Return as HEX
-		return static::hslToHex($hsl);
+		return self::hslToHex($lighterHSL);
 	}
 	
-	public static function makeGradient( $color ) {
-		// Sanity check
-		$color = static::_checkHex($color);
-		
+	public function makeGradient( $amount = FALSE ) {
 		// Decide which color needs to be made
-		if( static::isLight($color) ) {
-			$lightColor = $color;
-			$darkColor = static::darken($color);
+		if( $this->isLight() ) {
+			$lightColor = $this->_hex;
+			$darkColor = $this->darken($amount);
 		} else {
-			$lightColor = static::lighten($color);
-			$darkColor = $color;
+			$lightColor = $this->lighten($amount);
+			$darkColor = $this->_hex;
 		}
 		
 		// Return our gradient array
@@ -190,11 +186,15 @@ class Color {
 	 * @param string $color
 	 * @return boolean
 	 */
-	public static function isLight( $color ){
-		// Sanity check
-		$color = static::_checkHex($color);
-		// Convert into HSL
-		$hsl = static::hexToHsl($color);
+	public function isLight( $color = FALSE ){
+		if( $color !== FALSE ) {
+			// Sanity check
+			$color = $this->_checkHex($color);
+			// Convert into HSL
+			$hsl = self::hexToHsl($color);
+		} else {
+			$hsl = $this->_hsl;
+		}
 		// Check our lightness attribute
 		return ($hsl["L"] >= 0.5);
 	}
@@ -204,14 +204,23 @@ class Color {
 	 * @param type $color
 	 * @return boolean
 	 */
-	public static function isDark( $color ){
-		// Sanity check
-		$color = static::_checkHex($color);
-		// Convert into HSL
-		$hsl = static::hexToHsl($color);
+	public function isDark( $color = FALSE ){
+		if( $color !== FALSE ) {
+			// Sanity check
+			$color = $this->_checkHex($color);
+			// Convert into HSL
+			$hsl = self::hexToHsl($color);
+		} else {
+			$hsl = $this->_hsl;
+		}
 		// Check our lightness attribute
-		return ($hsl["L"] >= 0.5);
+		return ($hsl["L"] < 0.5);
 	}
+	
+    // ===========================
+    // = Private Functions Below =
+    // ===========================
+	
 	
 	/**
 	 * Darkens a given HSL array
@@ -219,18 +228,16 @@ class Color {
 	 * @param int $amount
 	 * @return array $hsl
 	 */
-	private static function _darken( $hsl, $amount = 0){
+	private function _darken( $hsl, $amount = 0){
 		// Check if we were provided a number
 		if( $amount ) {
 			$hsl['L'] = ($hsl['L'] * 100) - $amount;
 			$hsl['L'] = ($hsl['L'] < 0) ? 0:$hsl['L']/100;
-
-			return;
+		} else {
+		   	// We need to find out how much to darken
+			$hsl['L'] = $hsl['L']/2 ; 
 		}
 
-		// We need to find out how much to darken
-		$hsl['L'] = $hsl['L']  /2 ;
-		
 		return $hsl;
 	}
 	
@@ -240,17 +247,15 @@ class Color {
 	 * @param int $amount
 	 * @return array $hsl
 	 */
-	private static function _lighten( $hsl, $amount = 0){
+	private function _lighten( $hsl, $amount = 0){
 		// Check if we were provided a number
 		if( $amount ) {
 			$hsl['L'] = ($hsl['L'] * 100) + $amount;
-			$hsl['L'] = ($hsl['L'] > 100 )? 1:$hsl['L']/100;
-
-			return;
+			$hsl['L'] = ($hsl['L'] > 100) ? 1:$hsl['L']/100;
+		} else {
+			// We need to find out how much to lighten
+			$hsl['L'] += (1-$hsl['L'])/2;
 		}
-
-		// We need to find out how much to lighten
-		$hsl['L'] += (1-$hsl['L'])  /2 ;
 		
 		return $hsl;
 	}
@@ -262,7 +267,7 @@ class Color {
 	 * @param type $vH
 	 * @return int 
 	 */
-	private static function _huetorgb( $v1,$v2,$vH ) {
+	private function _huetorgb( $v1,$v2,$vH ) {
 		if( $vH < 0 ) {
 			$vH += 1;
 		}
@@ -285,6 +290,25 @@ class Color {
 
 		return $v1;
 
+	}
+	
+	/**
+	 *  You need to check if you were given a good hex string
+	 * @param string $hex
+	 * @throws Exception "Bad color format"
+	 */
+	private function _checkHex( $hex ) {
+		// Strip # sign is present
+		$color = str_replace("#", "", $hex);
+
+		// Make sure it's 6 digits
+		if( strlen($color) == 3 ) {
+			$color = $color[0].$color[0].$color[1].$color[1].$color[2].$color[2];
+		} else if( strlen($color) != 6 ) {
+			throw new Exception("HEX color needs to be 6 or 3 digits long");
+		}
+		
+		return $color;
 	}
 	
 }

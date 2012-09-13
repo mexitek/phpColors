@@ -35,6 +35,6 @@ echo $myBlue->isDark();
 // true
 
 print_r($myBlue->makeGradient());
-array( "light"=>"8cb3d9" ,"dark"=>"336699" )
+// array( "light"=>"8cb3d9" ,"dark"=>"336699" )
 
 ```

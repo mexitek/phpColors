@@ -187,16 +187,15 @@ class Color {
 	 * @return boolean
 	 */
 	public function isLight( $color = FALSE ){
-		if( $color !== FALSE ) {
-			// Sanity check
-			$color = $this->_checkHex($color);
-			// Convert into HSL
-			$hsl = self::hexToHsl($color);
-		} else {
-			$hsl = $this->_hsl;
-		}
-		// Check our lightness attribute
-		return ($hsl["L"] >= 0.5);
+		// Get our color
+		$color = ($color) ? $color:$this->_hex;
+		
+		// Calculate straight from rbg
+		$r = hexdec($color[0].$color[1]);
+		$g = hexdec($color[2].$color[3]);
+		$b = hexdec($color[4].$color[5]);
+		
+		return (( $r*299 + $g*587 + $b*114 )/1000 > 130);
 	}
 	
 	/**
@@ -205,16 +204,15 @@ class Color {
 	 * @return boolean
 	 */
 	public function isDark( $color = FALSE ){
-		if( $color !== FALSE ) {
-			// Sanity check
-			$color = $this->_checkHex($color);
-			// Convert into HSL
-			$hsl = self::hexToHsl($color);
-		} else {
-			$hsl = $this->_hsl;
-		}
-		// Check our lightness attribute
-		return ($hsl["L"] < 0.5);
+		// Get our color
+		$color = ($color) ? $color:$this->_hex;
+		
+		// Calculate straight from rbg
+		$r = hexdec($color[0].$color[1]);
+		$g = hexdec($color[2].$color[3]);
+		$b = hexdec($color[4].$color[5]);
+		
+		return (( $r*299 + $g*587 + $b*114 )/1000 <= 130);
 	}
 	
     // ===========================

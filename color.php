@@ -214,6 +214,17 @@ class Color {
 		
 		return (( $r*299 + $g*587 + $b*114 )/1000 <= 130);
 	}
+
+	public function complementary() {
+		// Get our HSL
+		$hsl = $this->_hsl;
+		print_r($hsl);
+		// Adjust Hue 180 degrees
+		$hsl['H'] += ($hsl['H']>180) ? -180:180;
+		print_r($hsl);
+		// Return the new value in HEX
+		return self::hslToHex($hsl);
+	}
 	
     // ===========================
     // = Private Functions Below =

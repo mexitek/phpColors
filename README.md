@@ -13,7 +13,7 @@ Instantiate an object of the color class with a hex color string `$foo = new Col
 - <strong>makeGradient( [$amount] )</strong> : Returns an array with 2 indices `light` and `dark`, the initial color will either be selected for `light` or `dark` dependings on it's brightness, then the other color will be generated.  The optional param allows for a static lighten or darkened amount.
 - <strong>complementary( [$hex] )</strong> : Returns the color ""opposite" or complementary to your color.
 
-*If a darker is lighter color is automatically generated the class will choose the shade halfway between your color and black (for dark) or halfway between your color and white (for light)*
+*If a darker or lighter color is automatically generated the class will choose the shade halfway between your color and black (for dark) or halfway between your color and white (for light)*
 
 ## Static Methods
 - <strong>hslToHex( $hsl )</strong> : Convert a HSL array to a HEX string.
@@ -28,7 +28,6 @@ Instantiate an object of the color class with a hex color string `$foo = new Col
 
 // Initialize my color
 $myBlue = new Color("#336699");
-
 
 echo $myBlue->darken();
 // 1a334d

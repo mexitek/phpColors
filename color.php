@@ -165,7 +165,12 @@ class Color {
 		// Return as HEX
 		return self::hslToHex($lighterHSL);
 	}
-	
+
+	/**
+	 * Creates an array with two shades that can be used to make a gradient
+	 * @param int Optional percentage amount you want your contrast color
+	 * @return array An array with a 'light' and 'dark' index
+	 */	
 	public function makeGradient( $amount = FALSE ) {
 		// Decide which color needs to be made
 		if( $this->isLight() ) {
@@ -214,7 +219,12 @@ class Color {
 		
 		return (( $r*299 + $g*587 + $b*114 )/1000 <= 130);
 	}
-
+	
+	/**
+	 * Returns the complmentary color
+	 * @return string Complementary hex color
+	 *
+	 */
 	public function complementary() {
 		// Get our HSL
 		$hsl = $this->_hsl;
@@ -225,6 +235,14 @@ class Color {
 		// Return the new value in HEX
 		return self::hslToHex($hsl);
 	}
+
+	/**
+	 * Returns your colors HSL array
+	 */
+	public function getHsl() {
+		return $this->_hsl;
+	}
+	
 	
     // ===========================
     // = Private Functions Below =

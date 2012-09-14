@@ -1,17 +1,13 @@
 <?php
 /**
- *
  * A color utility that helps manipulate HEX colors
- *
- * @author Arlo Carreon <arlo.carreon@bookit.com>
- *
  */
 class Color {
 	
 	private $_hex;
 	private $_hsl;
 	
-    /**
+    	/**
 	 * Instantiates the class with a HEX value
 	 * @param string $color
 	 */

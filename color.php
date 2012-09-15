@@ -180,7 +180,7 @@ class Color {
 		// Return our gradient array
 		return array( "light" => $lightColor, "dark" => $darkColor );
 	}
-			
+	
 	
 	/**
 	 * Returns whether or not given color is considered "light"
@@ -239,6 +239,38 @@ class Color {
 		return $this->_hsl;
 	}
 	
+	/**
+	 * Returns the cross browser CSS3 gradient
+	 * @param int Optional: percentage amount to light/darken the gradient
+	 * @return string CSS3 gradient for chrome, safari, firefox, opera and IE10
+	 */
+	public function getCssGradient($amount = FALSE) {
+	   
+	   // Get the recommended gradient
+	   $g = $this->makeGradient($amount);
+	   
+	   $css = "";
+	   /* fallback/image non-cover color */
+	   $css .= "background-color: #1a82f7;";
+
+	   /* Safari 4+, Chrome 1-9 */
+	   $css .= "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#".$g['light']."), to(#".$g['dark']."));";
+
+	   /* Safari 5.1+, Mobile Safari, Chrome 10+ */
+	   $css .= "background-image: -webkit-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
+
+	   /* Firefox 3.6+ */
+	   $css .= "background-image: -moz-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
+
+	   /* IE 10+ */
+	   $css .= "background-image: -ms-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
+
+	   /* Opera 11.10+ */
+	   $css .= "background-image: -o-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
+	
+	   // Return our CSS
+	   return $css;
+	}
 	
     // ===========================
     // = Private Functions Below =

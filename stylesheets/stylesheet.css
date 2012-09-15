@@ -477,3 +477,9 @@ footer a:hover {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
+
+/* Highlight methods in ul.methods */
+ul.methods strong {
+    font-weight:bold;
+    color:#336699;
+}

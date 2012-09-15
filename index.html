@@ -28,7 +28,8 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h2>How it works</h2>
+          
+<h2>How it works</h2>
 
 <p>Instantiate an object of the color class with a hex color string <code>$foo = new Color("336699")</code>.  That's it!  Now, call the methods you need for different color variants.</p>
 
@@ -48,15 +49,6 @@
 <li>
 <strong>complementary()</strong> : Returns the color ""opposite" or complementary to your color.</li>
 </ul><p><em>If a darker or lighter color is automatically generated the class will choose the shade halfway between your color and black (for dark) or halfway between your color and white (for light)</em></p>
-
-<h2>Static Methods</h2>
-
-<ul class="methods">
-<li>
-<strong>hslToHex( $hsl )</strong> : Convert a HSL array to a HEX string.</li>
-<li>
-<strong>hexToHsl( $hex )</strong> : Convert a HEX string into an HSL array.</li>
-</ul><h2>Examples</h2>
 
 <div class="highlight"><pre><span class="sd">/**</span>
 <span class="sd"> * Using The Class</span>
@@ -83,7 +75,16 @@
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$myBlue</span><span class="o">-&gt;</span><span class="na">makeGradient</span><span class="p">());</span>
 <span class="c1">// array( "light"=&gt;"8cb3d9" ,"dark"=&gt;"336699" )</span>
 
-<span class="sd">/**</span>
+</pre></div>
+
+<h2>Static Methods</h2>
+
+<ul class="methods">
+<li>
+<strong>hslToHex( $hsl )</strong> : Convert a HSL array to a HEX string.</li>
+<li>
+<strong>hexToHsl( $hex )</strong> : Convert a HEX string into an HSL array.</li>
+</ul><div class="highlight"><pre><span class="sd">/**</span>
 <span class="sd"> * On The Fly Custom Calculations</span>
 <span class="sd"> */</span>
 
@@ -96,6 +97,42 @@
  <span class="c1">// Gimme my new color!!</span>
  <span class="k">echo</span> <span class="nx">Color</span><span class="o">::</span><span class="na">hslToHex</span><span class="p">(</span><span class="nv">$myBlue</span><span class="p">);</span>
  <span class="c1">// 913399</span>
+
+</pre></div>
+
+<h2>CSS Helpers</h2>
+
+<ul class="methods">
+<li>
+<strong>getCssGradient( [$amount] )</strong> : Generates the CSS3 gradients for safari, chrome, opera, firefox and IE10. Optional percentage amount for lighter/darker shade.</li>
+</ul><p><em>Would like to add support to custom gradient stops</em></p>
+
+<div class="highlight"><pre><span class="c1">// Initialize my color</span>
+<span class="nv">$myBlue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Color</span><span class="p">(</span><span class="s2">"#336699"</span><span class="p">);</span>
+
+<span class="c1">// Get CSS</span>
+<span class="k">echo</span> <span class="nv">$myBlue</span><span class="o">-&gt;</span><span class="na">getCssGradient</span><span class="p">();</span>
+<span class="cm">/* - Actual output doesn't have comments and is single line</span>
+
+<span class="cm">  // fallback/image non-cover color</span>
+<span class="cm">  background-color: #1a82f7;</span>
+
+<span class="cm">  // Safari 4+, Chrome 1-9</span>
+<span class="cm">  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8cb3d9), to(#336699));</span>
+
+<span class="cm">  // Safari 5.1+, Mobile Safari, Chrome 10+</span>
+<span class="cm">  background-image: -webkit-linear-gradient(top, #8cb3d9, #336699);</span>
+
+<span class="cm">  // Firefox 3.6+</span>
+<span class="cm">  background-image: -moz-linear-gradient(top, #8cb3d9, #336699);</span>
+
+<span class="cm">  // IE 10+</span>
+<span class="cm">  background-image: -ms-linear-gradient(top, #8cb3d9, #336699);</span>
+
+<span class="cm">  // Opera 11.10+</span>
+<span class="cm">  background-image: -o-linear-gradient(top, #8cb3d9, #336699);</span>
+
+<span class="cm">*/</span>
 
 </pre></div>
         </section>

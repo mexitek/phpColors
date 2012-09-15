@@ -1,6 +1,6 @@
 # phpColors
 
-A series of PHP classes that let you manipulate colors. Just incase you ever need different shades of one color on the fly.
+A series of PHP methods that let you manipulate colors. Just incase you ever need different shades of one color on the fly.
 
 ## How it works
 Instantiate an object of the color class with a hex color string `$foo = new Color("336699")`.  That's it!  Now, call the methods you need for different color variants.

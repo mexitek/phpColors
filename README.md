@@ -15,12 +15,6 @@ Instantiate an object of the color class with a hex color string `$foo = new Col
 
 *If a darker or lighter color is automatically generated the class will choose the shade halfway between your color and black (for dark) or halfway between your color and white (for light)*
 
-## Static Methods
-- <strong>hslToHex( $hsl )</strong> : Convert a HSL array to a HEX string.
-- <strong>hexToHsl( $hex )</strong> : Convert a HEX string into an HSL array.
-
-## Examples
-
 ```php
 /**
  * Using The Class
@@ -47,6 +41,14 @@ echo $myBlue->complementary();
 print_r($myBlue->makeGradient());
 // array( "light"=>"8cb3d9" ,"dark"=>"336699" )
 
+```
+
+
+## Static Methods
+- <strong>hslToHex( $hsl )</strong> : Convert a HSL array to a HEX string.
+- <strong>hexToHsl( $hex )</strong> : Convert a HEX string into an HSL array.
+
+```php
 /**
  * On The Fly Custom Calculations
  */
@@ -60,5 +62,40 @@ print_r($myBlue->makeGradient());
  // Gimme my new color!!
  echo Color::hslToHex($myBlue);
  // 913399
+
+```
+
+## CSS Helpers
+- <strong>getCssGradient( [$amount] )</strong> : Generates the CSS3 gradients for safari, chrome, opera, firefox and IE10. Optional percentage amount for lighter/darker shade.
+
+*Would like to add support to custom gradient stops*
+
+```php
+// Initialize my color
+$myBlue = new Color("#336699");
+
+// Get CSS
+echo $myBlue->getCssGradient();
+/* - Actual output doesn't have comments and is single line
+  
+  // fallback/image non-cover color
+  background-color: #1a82f7;
+  
+  // Safari 4+, Chrome 1-9
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8cb3d9), to(#336699));
+  
+  // Safari 5.1+, Mobile Safari, Chrome 10+
+  background-image: -webkit-linear-gradient(top, #8cb3d9, #336699);
+  
+  // Firefox 3.6+
+  background-image: -moz-linear-gradient(top, #8cb3d9, #336699);
+  
+  // IE 10+
+  background-image: -ms-linear-gradient(top, #8cb3d9, #336699);
+  
+  // Opera 11.10+
+  background-image: -o-linear-gradient(top, #8cb3d9, #336699);
+  
+*/
 
 ```

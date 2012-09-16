@@ -488,3 +488,14 @@ em {
 	font-style:italic;
 	color:#767676;
 }
+
+aside#sidebar {
+	font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+	font-weight: bold;
+	padding-bottom: 5px;
+	color: #333;
+}
+
+aside#sidebar h3 { font-size: 1.3em; }
+aside#sidebar h2 { font-size: 1.6em; }
+aside#sidebar h1 { font-size: 2em; }

@@ -11,9 +11,11 @@ Instantiate an object of the color class with a hex color string `$foo = new Col
 - <strong>isLight( [$hex] )</strong> : Determins whether your color (or the provide param) is considered a "light" color. Returns `TRUE` if color is light.
 - <strong>isDark( [$hex] )</strong> : Determins whether your color (or the provide param) is considered a "dark" color. Returns `TRUE` if color is dark.
 - <strong>makeGradient( [$amount] )</strong> : Returns an array with 2 indices `light` and `dark`, the initial color will either be selected for `light` or `dark` dependings on it's brightness, then the other color will be generated.  The optional param allows for a static lighten or darkened amount.
-- <strong>complementary()</strong> : Returns the color ""opposite" or complementary to your color.
+- <strong>complementary()</strong> : Returns the color "opposite" or complementary to your color.
+- <strong>getHex()</strong> : Returns the original hex color.
+- <strong>getHsl()</strong> : Returns HSL array for your color.
 
-*If a darker or lighter color is automatically generated the class will choose the shade halfway between your color and black (for dark) or halfway between your color and white (for light)*
+*If a darker or lighter color is automatically generated the class will darken or lighten by 10% for sexily-subtle gradients*
 
 ```php
 /**
@@ -37,6 +39,12 @@ echo $myBlue->isDark();
 
 echo $myBlue->complementary();
 // 996633
+
+echo $myBlue->getHex();
+// 336699
+
+print_r( $myBlue->getHsl() );
+// array( "H"=> 210, "S"=> 0.5, "L"=>0.4 );
 
 print_r($myBlue->makeGradient());
 // array( "light"=>"8cb3d9" ,"dark"=>"336699" )

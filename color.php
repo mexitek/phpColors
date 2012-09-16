@@ -251,7 +251,7 @@ class Color {
 	   
 	   $css = "";
 	   /* fallback/image non-cover color */
-	   $css .= "background-color: #1a82f7;";
+	   $css .= "background-color: #".$this->_hex.";";
 
 	   /* Safari 4+, Chrome 1-9 */
 	   $css .= "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#".$g['light']."), to(#".$g['dark']."));";

@@ -34,7 +34,7 @@
 
 <h2>Available Methods</h2>
 
-<ul>
+<ul class="methods">
 <li>
 <strong>darken( [$amount] )</strong> : Allows you to obtain a darker shade of your color. Optionally you can decide to darken using a desired percentage.</li>
 <li>
@@ -51,7 +51,8 @@
 <strong>getHex()</strong> : Returns the original hex color.</li>
 <li>
 <strong>getHsl()</strong> : Returns HSL array for your color.</li>
-</ul><p><em>If a darker or lighter color is automatically generated the class will darken or lighten by 10% for sexily-subtle gradients</em></p>
+</ul>
+<blockquote>If a darker or lighter color is automatically generated the class will darken or lighten by 10% for sexily-subtle gradients</blockquote>
 
 <div class="highlight"><pre><span class="sd">/**</span>
 <span class="sd"> * Using The Class</span>
@@ -88,7 +89,7 @@
 
 <h2>Static Methods</h2>
 
-<ul>
+<ul class="methods">
 <li>
 <strong>hslToHex( $hsl )</strong> : Convert a HSL array to a HEX string.</li>
 <li>
@@ -111,10 +112,11 @@
 
 <h2>CSS Helpers</h2>
 
-<ul>
+<ul class="methods">
 <li>
 <strong>getCssGradient( [$amount] )</strong> : Generates the CSS3 gradients for safari, chrome, opera, firefox and IE10. Optional percentage amount for lighter/darker shade.</li>
-</ul><p><em>Would like to add support to custom gradient stops</em></p>
+</ul>
+<blockquote>Would like to add support to custom gradient stops</blockquote>
 
 <div class="highlight"><pre><span class="c1">// Initialize my color</span>
 <span class="nv">$myBlue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Color</span><span class="p">(</span><span class="s2">"#336699"</span><span class="p">);</span>

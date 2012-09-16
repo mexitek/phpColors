@@ -7,6 +7,13 @@ class Color {
 	private $_hex;
 	private $_hsl;
 	
+	/**
+	 * Auto darkens/lightens by 10% for sexily-subtle gradients.
+	 * Set this to FALSE to adjust automatic shade to be between given color 
+	 * and black (for darken) or white (for lighten)
+	 */
+	const DEFAULT_ADJUST = 10;
+	
     	/**
 	 * Instantiates the class with a HEX value
 	 * @param string $color
@@ -140,7 +147,7 @@ class Color {
 	 * @param int $amount
 	 * @return string Darker HEX value
 	 */
-	public function darken( $amount = FALSE ){
+	public function darken( $amount = self::DEFAULT_ADJUST ){
 		// Darken
 		$darkerHSL = $this->_darken($this->_hsl, $amount);
 		// Return as HEX
@@ -155,7 +162,7 @@ class Color {
 	 * @param int $amount
 	 * @return string LIghter HEX value
 	 */
-	public function lighten( $amount = FALSE ){
+	public function lighten( $amount = self::DEFAULT_ADJUST ){
 		// Lighten
 		$lighterHSL = $this->_lighten($this->_hsl, $amount);
 		// Return as HEX
@@ -167,7 +174,7 @@ class Color {
 	 * @param int Optional percentage amount you want your contrast color
 	 * @return array An array with a 'light' and 'dark' index
 	 */	
-	public function makeGradient( $amount = FALSE ) {
+	public function makeGradient( $amount = self::DEFAULT_ADJUST ) {
 		// Decide which color needs to be made
 		if( $this->isLight() ) {
 			$lightColor = $this->_hex;
@@ -238,13 +245,18 @@ class Color {
 	public function getHsl() {
 		return $this->_hsl;
 	}
-	
+	/**
+	 * Returns your original color
+	 */
+	public function getHex() {
+		return $this->_hex;
+	}
 	/**
 	 * Returns the cross browser CSS3 gradient
 	 * @param int Optional: percentage amount to light/darken the gradient
 	 * @return string CSS3 gradient for chrome, safari, firefox, opera and IE10
 	 */
-	public function getCssGradient($amount = FALSE) {
+	public function getCssGradient($amount = self::DEFAULT_ADJUST) {
 	   
 	   // Get the recommended gradient
 	   $g = $this->makeGradient($amount);
@@ -283,14 +295,14 @@ class Color {
 	 * @param int $amount
 	 * @return array $hsl
 	 */
-	private function _darken( $hsl, $amount = 0){
+	private function _darken( $hsl, $amount = self::DEFAULT_ADJUST){
 		// Check if we were provided a number
 		if( $amount ) {
 			$hsl['L'] = ($hsl['L'] * 100) - $amount;
 			$hsl['L'] = ($hsl['L'] < 0) ? 0:$hsl['L']/100;
 		} else {
 		   	// We need to find out how much to darken
-			$hsl['L'] = $hsl['L']/2 ; 
+			$hsl['L'] = $hsl['L']/2 ;
 		}
 
 		return $hsl;
@@ -302,7 +314,7 @@ class Color {
 	 * @param int $amount
 	 * @return array $hsl
 	 */
-	private function _lighten( $hsl, $amount = 0){
+	private function _lighten( $hsl, $amount = self::DEFAULT_ADJUST){
 		// Check if we were provided a number
 		if( $amount ) {
 			$hsl['L'] = ($hsl['L'] * 100) + $amount;

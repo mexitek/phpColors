@@ -2,14 +2,59 @@
 
 include("color.php");
 
-$myBlue = new Color("#336699"); 
+// Use different colors to test
+$myBlue = new Color("#336699");
+$myBlack = new Color("#333");
+$myPurple = new Color("#913399"); 
 
+// ************** No Need to Change Below **********************
 ?>
-<style>
+<style> 
+	.block{
+		height:100px;
+		width:200px;
+		font-size:20px;
+		text-align:center;
+		padding-top:100px;
+		display:block;
+		margin:0px;
+		float:left;
+	}
+	.clear{ clear:both; }
+	
 	.testDiv{
 		<?= $myBlue->getCssGradient();?>
-		height:200px;
-		width:400px;
+		color: <?=($myBlue->isDark() ? "#EEE":"#333")?>;
+	}
+	.testDiv.plain{
+		background: #<?= $myBlue->getHex();?>;
+		color: <?=($myBlue->isDark() ? "#EEE":"#333")?>;
+	}
+	
+	.testDiv2{
+		<?= $myBlack->getCssGradient();?>
+		color: <?=($myBlack->isDark() ? "#EEE":"#333")?>;
+	}
+	.testDiv2.plain{
+		background: #<?= $myBlack->getHex();?>;
+		color: <?=($myBlack->isDark() ? "#EEE":"#333")?>;
+	}
+	
+	.testDiv3{
+		<?= $myPurple->getCssGradient();?>
+		color: <?=($myPurple->isDark() ? "#EEE":"#333")?>;
+	}
+	.testDiv3.plain{
+		background: #<?= $myPurple->getHex();?>;
+		color: <?=($myPurple->isDark() ? "#EEE":"#333")?>;
 	}
 </style>
-<div class="testDiv"></div>
+<div class="clear"></div>
+<div class="block testDiv">phpColor Gradient #<?= $myBlue->getHex();?></div>
+<div class="block testDiv plain">Plain #<?= $myBlue->getHex();?></div>
+<div class="clear"></div>
+<div class="block testDiv2">phpColor Gradient #<?= $myBlack->getHex();?></div>
+<div class="block testDiv2 plain">Plain #<?= $myBlack->getHex();?></div>
+<div class="clear"></div>
+<div class="block testDiv3">phpColor Gradient #<?= $myPurple->getHex();?></div>
+<div class="block testDiv3 plain">Plain #<?= $myPurple->getHex();?></div>

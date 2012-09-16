@@ -40,6 +40,12 @@ echo $myBlue->isDark();
 echo $myBlue->complementary();
 // 996633
 
+echo $myBlue->getHex();
+// 336699
+
+print_r( $myBlue->getHsl() );
+// array( "H"=> 210, "S"=> 0.5, "L"=>0.4 );
+
 print_r($myBlue->makeGradient());
 // array( "light"=>"8cb3d9" ,"dark"=>"336699" )
 

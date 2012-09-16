@@ -28,14 +28,13 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          
 <h2>How it works</h2>
 
 <p>Instantiate an object of the color class with a hex color string <code>$foo = new Color("336699")</code>.  That's it!  Now, call the methods you need for different color variants.</p>
 
 <h2>Available Methods</h2>
 
-<ul class="methods">
+<ul>
 <li>
 <strong>darken( [$amount] )</strong> : Allows you to obtain a darker shade of your color. Optionally you can decide to darken using a desired percentage.</li>
 <li>
@@ -45,11 +44,14 @@
 <li>
 <strong>isDark( [$hex] )</strong> : Determins whether your color (or the provide param) is considered a "dark" color. Returns <code>TRUE</code> if color is dark.</li>
 <li>
-<strong>makeGradient( [$amount] )</strong> : Returns an array with 2 indices <code>light</code> and <code>dark</code>, the initial color will either be selected for <code>light</code> or <code>dark</code> depending on it's brightness, then the other color will be generated.  The optional param allows for a static lighten or darkened amount.</li>
+<strong>makeGradient( [$amount] )</strong> : Returns an array with 2 indices <code>light</code> and <code>dark</code>, the initial color will either be selected for <code>light</code> or <code>dark</code> dependings on it's brightness, then the other color will be generated.  The optional param allows for a static lighten or darkened amount.</li>
 <li>
-<strong>complementary()</strong> : Returns the color ""opposite" or complementary to your color.</li>
-</ul>
-<blockquote>If a darker or lighter color is automatically generated the class will choose the shade halfway between your color and black (for dark) or halfway between your color and white (for light)</blockquote>
+<strong>complementary()</strong> : Returns the color "opposite" or complementary to your color.</li>
+<li>
+<strong>getHex()</strong> : Returns the original hex color.</li>
+<li>
+<strong>getHsl()</strong> : Returns HSL array for your color.</li>
+</ul><p><em>If a darker or lighter color is automatically generated the class will darken or lighten by 10% for sexily-subtle gradients</em></p>
 
 <div class="highlight"><pre><span class="sd">/**</span>
 <span class="sd"> * Using The Class</span>
@@ -73,6 +75,12 @@
 <span class="k">echo</span> <span class="nv">$myBlue</span><span class="o">-&gt;</span><span class="na">complementary</span><span class="p">();</span>
 <span class="c1">// 996633</span>
 
+<span class="k">echo</span> <span class="nv">$myBlue</span><span class="o">-&gt;</span><span class="na">getHex</span><span class="p">();</span>
+<span class="c1">// 336699</span>
+
+<span class="nb">print_r</span><span class="p">(</span> <span class="nv">$myBlue</span><span class="o">-&gt;</span><span class="na">getHsl</span><span class="p">()</span> <span class="p">);</span>
+<span class="c1">// array( "H"=&gt; 210, "S"=&gt; 0.5, "L"=&gt;0.4 );</span>
+
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$myBlue</span><span class="o">-&gt;</span><span class="na">makeGradient</span><span class="p">());</span>
 <span class="c1">// array( "light"=&gt;"8cb3d9" ,"dark"=&gt;"336699" )</span>
 
@@ -80,7 +88,7 @@
 
 <h2>Static Methods</h2>
 
-<ul class="methods">
+<ul>
 <li>
 <strong>hslToHex( $hsl )</strong> : Convert a HSL array to a HEX string.</li>
 <li>
@@ -103,11 +111,11 @@
 
 <h2>CSS Helpers</h2>
 
-<ul class="methods">
+<ul>
 <li>
 <strong>getCssGradient( [$amount] )</strong> : Generates the CSS3 gradients for safari, chrome, opera, firefox and IE10. Optional percentage amount for lighter/darker shade.</li>
-</ul>
-<blockquote>Would like to add support for custom gradient stops</blockquote>
+</ul><p><em>Would like to add support to custom gradient stops</em></p>
+
 <div class="highlight"><pre><span class="c1">// Initialize my color</span>
 <span class="nv">$myBlue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Color</span><span class="p">(</span><span class="s2">"#336699"</span><span class="p">);</span>
 
@@ -115,7 +123,7 @@
 <span class="k">echo</span> <span class="nv">$myBlue</span><span class="o">-&gt;</span><span class="na">getCssGradient</span><span class="p">();</span>
 <span class="cm">/* - Actual output doesn't have comments and is single line</span>
 
-<span class="cm">  // fallback color</span>
+<span class="cm">  // fallback/image non-cover color</span>
 <span class="cm">  background-color: #336699;</span>
 
 <span class="cm">  // Safari 4+, Chrome 1-9</span>

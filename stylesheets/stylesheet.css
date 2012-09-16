@@ -252,7 +252,7 @@ form {
   margin-left: -1.5em;
 }
 
-#main-content h3 {
+#main-content h3, aside#sidebar h3 {
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; 
   font-size: 18px;
   font-weight: bold;
@@ -261,14 +261,14 @@ form {
   color: #474747;
 } 
  
-#main-content h3:before {
+#main-content h3:before, aside#sidebar h3 {
   content: "///";
   color: #9ddcff;
   padding-right: 0.3em;
   margin-left: -2em;
 }
 
-#main-content h4 {
+#main-content h4, aside#sidebar h4 {
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; 
   font-size: 15px;
   font-weight: bold;

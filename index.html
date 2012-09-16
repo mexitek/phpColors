@@ -48,7 +48,8 @@
 <strong>makeGradient( [$amount] )</strong> : Returns an array with 2 indices <code>light</code> and <code>dark</code>, the initial color will either be selected for <code>light</code> or <code>dark</code> dependings on it's brightness, then the other color will be generated.  The optional param allows for a static lighten or darkened amount.</li>
 <li>
 <strong>complementary()</strong> : Returns the color ""opposite" or complementary to your color.</li>
-</ul><p><em>If a darker or lighter color is automatically generated the class will choose the shade halfway between your color and black (for dark) or halfway between your color and white (for light)</em></p>
+</ul>
+<blockquote>If a darker or lighter color is automatically generated the class will choose the shade halfway between your color and black (for dark) or halfway between your color and white (for light)</blockquote>
 
 <div class="highlight"><pre><span class="sd">/**</span>
 <span class="sd"> * Using The Class</span>
@@ -105,7 +106,8 @@
 <ul class="methods">
 <li>
 <strong>getCssGradient( [$amount] )</strong> : Generates the CSS3 gradients for safari, chrome, opera, firefox and IE10. Optional percentage amount for lighter/darker shade.</li>
-</ul><p><em>Would like to add support to custom gradient stops</em></p>
+</ul>
+<blockquote>Would like to add support to custom gradient stops</blockquote>
 
 <div class="highlight"><pre><span class="c1">// Initialize my color</span>
 <span class="nv">$myBlue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Color</span><span class="p">(</span><span class="s2">"#336699"</span><span class="p">);</span>

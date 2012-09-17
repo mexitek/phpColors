@@ -334,7 +334,7 @@ class Color {
 	 * @param type $vH
 	 * @return int 
 	 */
-	private function _huetorgb( $v1,$v2,$vH ) {
+	private static function _huetorgb( $v1,$v2,$vH ) {
 		if( $vH < 0 ) {
 			$vH += 1;
 		}

@@ -364,7 +364,7 @@ class Color {
 	 * @param string $hex
 	 * @throws Exception "Bad color format"
 	 */
-	private function _checkHex( $hex ) {
+	private static function _checkHex( $hex ) {
 		// Strip # sign is present
 		$color = str_replace("#", "", $hex);
 

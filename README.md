@@ -86,8 +86,8 @@ $myBlue = new Color("#336699");
 echo $myBlue->getCssGradient();
 /* - Actual output doesn't have comments and is single line
   
-  // fallback/image non-cover color
-  background-color: #336699;
+  // fallback background
+  background: #336699;
   
   // Safari 4+, Chrome 1-9
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8cb3d9), to(#336699));

@@ -1,5 +1,5 @@
 {
-    "name": "mexitek/phpColors",
+    "name": "mexitek/phpcolors",
     "description": "A series of methods that let you manipulate colors. Just incase you ever need different shades of one color on the fly.",
     "keywords": ["color", "ui", "css", "frontend", "design"],
     "homepage": "http://mexitek.github.com/phpColors/",

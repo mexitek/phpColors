@@ -1,6 +1,6 @@
 <?php
 
-namespace Bcl;
+namespace phpColors;
 
 use \Exception;
 

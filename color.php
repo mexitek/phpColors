@@ -1,4 +1,9 @@
 <?php
+
+namespace phpColors;
+
+use \Exception;
+
 /**
  * A color utility that helps manipulate HEX colors
  */

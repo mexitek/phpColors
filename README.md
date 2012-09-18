@@ -15,7 +15,7 @@ Instantiate an object of the color class with a hex color string `$foo = new Col
 - <strong>getHex()</strong> : Returns the original hex color.
 - <strong>getHsl()</strong> : Returns HSL array for your color.
 
-> If a darker or lighter color is automatically generated the class will darken or lighten by 10% for sexily-subtle gradients
+> Auto lightens/darkens by 10% for sexily-subtle gradients
 
 ```php
 /**

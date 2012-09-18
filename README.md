@@ -22,6 +22,8 @@ Instantiate an object of the color class with a hex color string `$foo = new Col
  * Using The Class
  */
 
+using phpColors\Color;
+
 // Initialize my color
 $myBlue = new Color("#336699");
 
@@ -61,6 +63,8 @@ print_r($myBlue->makeGradient());
  * On The Fly Custom Calculations
  */
  
+using phpColors\Color;
+
  // Convert my HEX
  $myBlue = Color::hexToHsl("#336699");
  
@@ -79,6 +83,9 @@ print_r($myBlue->makeGradient());
 *Would like to add support to custom gradient stops*
 
 ```php
+
+using phpColors\Color;
+
 // Initialize my color
 $myBlue = new Color("#336699");
 

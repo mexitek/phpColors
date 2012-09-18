@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../color.php";
+use phpColors\Color;
 
 class ColorTest extends PHPUnit_Framework_TestCase {
 

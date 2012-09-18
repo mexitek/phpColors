@@ -269,6 +269,9 @@ class Color {
 	   $css = "";
 	   /* fallback/image non-cover color */
 	   $css .= "background-color: #".$this->_hex.";";
+           
+           /* IE Browsers */
+	   $css .= "filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#".$g['light']."', endColorstr='#".$g['dark']."');";
 
 	   /* Safari 4+, Chrome 1-9 */
 	   $css .= "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#".$g['light']."), to(#".$g['dark']."));";

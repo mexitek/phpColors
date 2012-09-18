@@ -15,7 +15,7 @@ Instantiate an object of the color class with a hex color string `$foo = new Col
 - <strong>getHex()</strong> : Returns the original hex color.
 - <strong>getHsl()</strong> : Returns HSL array for your color.
 
-*If a darker or lighter color is automatically generated the class will darken or lighten by 10% for sexily-subtle gradients*
+> If a darker or lighter color is automatically generated the class will darken or lighten by 10% for sexily-subtle gradients
 
 ```php
 /**
@@ -80,7 +80,7 @@ using phpColors\Color;
 ## CSS Helpers
 - <strong>getCssGradient( [$amount] )</strong> : Generates the CSS3 gradients for safari, chrome, opera, firefox and IE10. Optional percentage amount for lighter/darker shade.
 
-*Would like to add support to custom gradient stops*
+> Would like to add support to custom gradient stops
 
 ```php
 

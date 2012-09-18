@@ -1,6 +1,8 @@
 <?php 
 
-include("color.php");
+include("src/color.php");
+
+use phpColors\Color;
 
 // Use different colors to test
 $myBlue = new Color("#336699");

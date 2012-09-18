@@ -10,5 +10,5 @@
     "authors" : [
       { "name": "Arlo Carreon", "homepage":"http://arlocarreon.com", "role" : "creator" }
     ],
-    "bin": ["color.php"]
+    "bin": ["src/color.php"]
 }

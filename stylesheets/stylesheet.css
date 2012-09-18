@@ -479,7 +479,7 @@ footer a:hover {
 @media only screen and (max-width: 479px) {}
 
 /* Highlight methods in ul.methods */
-ul.methods strong {
+section ul strong {
     font-weight:bold;
     color:#336699;
 }

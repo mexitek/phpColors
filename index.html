@@ -16,7 +16,7 @@
     <title>phpColors</title>
   </head>
 
-  <body>
+  <body onload="javascript: makeJSONP('http://travis-ci.org/mexitek/phpColors.json?callback=processTravisAPI');">
     <header>
       <div class="inner">
         <h1>phpColors</h1>
@@ -201,9 +201,6 @@ Auto lightens/darkens by 10% for sexily-subtle gradients
               var newScript = document.createElement("script");
               newScript.src = url;
               document.getElementsByTag("head")[0].append(newScript);
-            }
-            window.onLoad = function(){
-              makeJSONP("http://travis-ci.org/mexitek/phpColors.json?callback=processTravisAPI");
             }
           </script>
 

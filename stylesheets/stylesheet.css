@@ -504,3 +504,11 @@ header a.button.travis-status {
   top: 100px;
   background: none;
 }
+
+header a.button.travis-status.good {
+  background: transparent url(../images/travis-good.png) 0 0 no-repeat;
+}
+
+header a.button.travis-status.bad {
+  background: transparent url(../images/travis-bad.png) 0 0 no-repeat;
+}

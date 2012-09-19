@@ -1,4 +1,4 @@
-# phpColors
+# phpColors [![Build Status](https://secure.travis-ci.org/mexitek/phpColors.png)](http://travis-ci.org/mexitek/phpColors)
 
 A series of PHP methods that let you manipulate colors. Just incase you ever need different shades of one color on the fly.
 

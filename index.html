@@ -196,8 +196,16 @@ Auto lightens/darkens by 10% for sexily-subtle gradients
               el.className = "button  travis-status " + (buildStatus ? "good":"bad");
               el.innerHTML = "<small>Last Build Was</small>" + (buildStatus ? "Successful":"Failed");
             }
+            
+            function makeJSONP(url){
+              var newScript = document.createElement("script");
+              newScript.src = url;
+              document.getElementsByTag("head")[0].append(newScript);
+            }
+            window.onLoad = function(){
+              makeJSONP("http://travis-ci.org/mexitek/phpColors.json?callback=processTravisAPI");
+            }
           </script>
-          <script src="http://travis-ci.org/mexitek/phpColors.json?callback=processTravisAPI"></script>
 
   </body>
 </html>

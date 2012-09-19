@@ -22,7 +22,7 @@
         <h1>phpColors</h1>
         <h2>A series of methods that let you manipulate colors. Just incase you ever need different shades of one color on the fly.</h2>
         <a href="https://github.com/mexitek/phpColors" class="button"><small>View project on</small>GitHub</a>
-        <a href="http://travis-ci.org/mexitek/phpColors" class="button travis-status"></a>
+        <a href="http://travis-ci.org/mexitek/phpColors" class="button travis-status" id="travis-status"></a>
       </div>
     </header>
 
@@ -189,6 +189,15 @@ Auto lightens/darkens by 10% for sexily-subtle gradients
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
+          <script>
+            function processTravisAPI(data){
+              var el = document.getElementsByClassName("buton travis-status")[0];
+              var buildStatus = (data.last_build_status==0 );
+              el.className = "button  travis-status " + (buildStatus ? "good":"bad");
+              el.innerHTML = "<small>Last Build Was</small>" + (buildStatus ? "Successful":"Failed");
+            }
+          </script>
+          <script src="http://travis-ci.org/mexitek/phpColors.json?callback=processTravisAPI"></script>
 
   </body>
 </html>

@@ -424,7 +424,7 @@ footer a:hover {
   header h2 {
     font-size: 24px;
   }
-  header a.button {
+  header a.button,header a.button.travis-status {
     background-image: none;
     width: auto;
     height: auto;

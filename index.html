@@ -191,7 +191,7 @@ Auto lightens/darkens by 10% for sexily-subtle gradients
           </script>
           <script>
             function processTravisAPI(data){
-              var el = document.getElementsByClassName("buton travis-status")[0];
+              var el = document.getElementsByClassName("button travis-status")[0];
               var buildStatus = (data.last_build_status==0 );
               el.className = "button  travis-status " + (buildStatus ? "good":"bad");
               el.innerHTML = "<small>Last Build Was</small>" + (buildStatus ? "Successful":"Failed");

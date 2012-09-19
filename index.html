@@ -192,7 +192,7 @@ Auto lightens/darkens by 10% for sexily-subtle gradients
           <script>
             function processTravisAPI(data){
               if( !data.commit && data.last_build_id ) {
-                makeJSONP('https://travis-ci.org/mexitek/phpColors/builds/'+data.last_build_id+'.json?callback=processTravisAPI'');
+                makeJSONP('https://travis-ci.org/mexitek/phpColors/builds/'+data.last_build_id+'.json?callback=processTravisAPI');
               }
               var el = document.getElementsByClassName("button travis-status")[0];
               var buildStatus = (data.status==0 );

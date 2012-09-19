@@ -499,3 +499,8 @@ aside#sidebar {
 aside#sidebar h3 { font-size: 1.3em; }
 aside#sidebar h2 { font-size: 1.6em; }
 aside#sidebar h1 { font-size: 2em; }
+
+header a.button.travis-status {
+  top: 100px;
+  background: none;
+}

@@ -198,7 +198,7 @@ Auto lightens/darkens by 10% for sexily-subtle gradients
               var el = document.getElementsByClassName("button travis-status")[0];
               var buildStatus = (data.status==0 );
               el.className = "button  travis-status " + (buildStatus ? "good":"bad");
-              el.innerHTML = "<small>Last Build "+(buildStatus ? "Successful":"Failed")+"</small>" + (buildStatus ? data.commit.substr(0,5):data.commit.substr(0,5));
+              el.innerHTML = "<small>Last Build "+(buildStatus ? "Successful":"Failed")+"</small>" + data.commit.substr(0,7);
             }
             
             function makeJSONP(url){

@@ -369,6 +369,19 @@ footer a:hover {
 * html .clearfix {height: 1%;}
 .clearfix {display: block;}
 
+header a.button.travis-status {
+  top: 100px;
+  background: none;
+}
+
+header a.button.travis-status.good {
+  background: transparent url(../images/travis-good.png) 0 0 no-repeat;
+}
+
+header a.button.travis-status.bad {
+  background: transparent url(../images/travis-bad.png) 0 0 no-repeat;
+}
+
 /* #Media Queries
 ================================================== */
 
@@ -500,15 +513,4 @@ aside#sidebar h3 { font-size: 1.3em; }
 aside#sidebar h2 { font-size: 1.6em; }
 aside#sidebar h1 { font-size: 2em; }
 
-header a.button.travis-status {
-  top: 100px;
-  background: none;
-}
 
-header a.button.travis-status.good {
-  background: transparent url(../images/travis-good.png) 0 0 no-repeat;
-}
-
-header a.button.travis-status.bad {
-  background: transparent url(../images/travis-bad.png) 0 0 no-repeat;
-}

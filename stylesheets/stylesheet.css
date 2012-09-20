@@ -437,8 +437,9 @@ header a.button.travis-status.bad {
   header h2 {
     font-size: 24px;
   }
-  header a.button,header a.button.travis-status {
+  header a.button, header a.button.travis-status.good,header a.button.travis-status.bad {
     background-image: none;
+    top:auto;
     width: auto;
     height: auto;
     display: inline-block;

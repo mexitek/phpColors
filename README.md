@@ -117,3 +117,5 @@ echo $myBlue->getCssGradient();
 */
 
 ```
+
+# License: [arlo.mit-license.org](http://arlo.mit-license.org)

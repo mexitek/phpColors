@@ -19,16 +19,16 @@ class Color {
      */
     const DEFAULT_ADJUST = 10;
 
-        /**
+    /**
      * Instantiates the class with a HEX value
-     * @param string $color
+     * @param string $hex
      */
     function __construct( $hex ) {
         // Strip # sign is present
         $color = str_replace("#", "", $hex);
 
         // Make sure it's 6 digits
-        if( strlen($color) == 3 ) {
+        if( strlen($color) === 3 ) {
             $color = $color[0].$color[0].$color[1].$color[1].$color[2].$color[2];
         } else if( strlen($color) != 6 ) {
             throw new Exception("HEX color needs to be 6 or 3 digits long");
@@ -43,7 +43,7 @@ class Color {
     // ====================
 
     /**
-     * Given a HEX string returns a HSL array equilavent.
+     * Given a HEX string returns a HSL array equivalent.
      * @param string $color
      * @return array HSL associative array
      */
@@ -99,14 +99,14 @@ class Color {
     }
 
     /**
-     *  Given a HSL associative array returns the equilavent HEX string
+     *  Given a HSL associative array returns the equivalent HEX string
      * @param array $hsl
      * @return string HEX string
      * @throws Exception "Bad HSL Array"
      */
     public static function hslToHex( $hsl = array() ){
          // Make sure it's HSL
-        if(     empty($hsl) || !isset($hsl["H"]) || !isset($hsl["S"]) || !isset($hsl["L"]) ) {
+        if(empty($hsl) || !isset($hsl["H"]) || !isset($hsl["S"]) || !isset($hsl["L"]) ) {
             throw new Exception("Param was not an HSL array");
         }
 
@@ -126,7 +126,7 @@ class Color {
 
             $var_1 = 2 * $L - $var_2;
 
-        $r = round(255 * self::_huetorgb( $var_1, $var_2, $H + (1/3) ));
+            $r = round(255 * self::_huetorgb( $var_1, $var_2, $H + (1/3) ));
             $g = round(255 * self::_huetorgb( $var_1, $var_2, $H ));
             $b = round(255 * self::_huetorgb( $var_1, $var_2, $H - (1/3) ));
 
@@ -138,9 +138,9 @@ class Color {
         $b = dechex($b);
 
         // Make sure we get 2 digits for decimals
-        $r = (strlen("".$r)==1) ? "0".$r:$r;
-        $g = (strlen("".$g)==1) ? "0".$g:$g;
-        $b = (strlen("".$b)==1) ? "0".$b:$b;
+        $r = (strlen("".$r)===1) ? "0".$r:$r;
+        $g = (strlen("".$g)===1) ? "0".$g:$g;
+        $b = (strlen("".$b)===1) ? "0".$b:$b;
 
         return $r.$g.$b;
     }
@@ -148,7 +148,6 @@ class Color {
     /**
      * Given a HEX value, returns a darker color. If no desired amount provided, then the color halfway between
      * given HEX and black will be returned.
-     * @param string $color
      * @param int $amount
      * @return string Darker HEX value
      */
@@ -157,15 +156,13 @@ class Color {
         $darkerHSL = $this->_darken($this->_hsl, $amount);
         // Return as HEX
         return self::hslToHex($darkerHSL);
-
     }
 
     /**
      * Given a HEX value, returns a lighter color. If no desired amount provided, then the color halfway between
      * given HEX and white will be returned.
-     * @param string $color
      * @param int $amount
-     * @return string LIghter HEX value
+     * @return string Lighter HEX value
      */
     public function lighten( $amount = self::DEFAULT_ADJUST ){
         // Lighten
@@ -176,7 +173,7 @@ class Color {
 
     /**
      * Creates an array with two shades that can be used to make a gradient
-     * @param int Optional percentage amount you want your contrast color
+     * @param int $amount Optional percentage amount you want your contrast color
      * @return array An array with a 'light' and 'dark' index
      */
     public function makeGradient( $amount = self::DEFAULT_ADJUST ) {
@@ -196,12 +193,12 @@ class Color {
 
     /**
      * Returns whether or not given color is considered "light"
-     * @param string $color
+     * @param string|Boolean $color
      * @return boolean
      */
     public function isLight( $color = FALSE ){
         // Get our color
-        $color = ($color) ? $color:$this->_hex;
+        $color = ($color) ? $color : $this->_hex;
 
         // Calculate straight from rbg
         $r = hexdec($color[0].$color[1]);
@@ -213,7 +210,7 @@ class Color {
 
     /**
      * Returns whether or not a given color is considered "dark"
-     * @param type $color
+     * @param string|Boolean $color
      * @return boolean
      */
     public function isDark( $color = FALSE ){
@@ -229,7 +226,7 @@ class Color {
     }
 
     /**
-     * Returns the complmentary color
+     * Returns the complimentary color
      * @return string Complementary hex color
      *
      */
@@ -263,33 +260,33 @@ class Color {
      */
     public function getCssGradient($amount = self::DEFAULT_ADJUST) {
 
-       // Get the recommended gradient
-       $g = $this->makeGradient($amount);
+        // Get the recommended gradient
+        $g = $this->makeGradient($amount);
 
-       $css = "";
-       /* fallback/image non-cover color */
-       $css .= "background-color: #".$this->_hex.";";
+        $css = "";
+        /* fallback/image non-cover color */
+        $css .= "background-color: #".$this->_hex.";";
 
-           /* IE Browsers */
-       $css .= "filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#".$g['light']."', endColorstr='#".$g['dark']."');";
+        /* IE Browsers */
+        $css .= "filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#".$g['light']."', endColorstr='#".$g['dark']."');";
 
-       /* Safari 4+, Chrome 1-9 */
-       $css .= "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#".$g['light']."), to(#".$g['dark']."));";
+        /* Safari 4+, Chrome 1-9 */
+        $css .= "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#".$g['light']."), to(#".$g['dark']."));";
 
-       /* Safari 5.1+, Mobile Safari, Chrome 10+ */
-       $css .= "background-image: -webkit-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
+        /* Safari 5.1+, Mobile Safari, Chrome 10+ */
+        $css .= "background-image: -webkit-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
 
-       /* Firefox 3.6+ */
-       $css .= "background-image: -moz-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
+        /* Firefox 3.6+ */
+        $css .= "background-image: -moz-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
 
-       /* IE 10+ */
-       $css .= "background-image: -ms-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
+        /* IE 10+ */
+        $css .= "background-image: -ms-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
 
-       /* Opera 11.10+ */
-       $css .= "background-image: -o-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
+        /* Opera 11.10+ */
+        $css .= "background-image: -o-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
 
-       // Return our CSS
-       return $css;
+        // Return our CSS
+        return $css;
     }
 
     // ===========================
@@ -368,8 +365,9 @@ class Color {
     }
 
     /**
-     *  You need to check if you were given a good hex string
+     * You need to check if you were given a good hex string
      * @param string $hex
+     * @return string Color
      * @throws Exception "Bad color format"
      */
     private static function _checkHex( $hex ) {

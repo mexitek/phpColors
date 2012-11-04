@@ -256,34 +256,36 @@ class Color {
     /**
      * Returns the cross browser CSS3 gradient
      * @param int Optional: percentage amount to light/darken the gradient
+     * @param string $prefix Optional: prefix for every lines
+     * @param string $suffix Optional: suffix for every lines
      * @return string CSS3 gradient for chrome, safari, firefox, opera and IE10
      */
-    public function getCssGradient($amount = self::DEFAULT_ADJUST) {
+    public function getCssGradient($amount = self::DEFAULT_ADJUST, $suffix = "" , $prefix = "" ) {
 
         // Get the recommended gradient
         $g = $this->makeGradient($amount);
 
         $css = "";
         /* fallback/image non-cover color */
-        $css .= "background-color: #".$this->_hex.";";
+        $css .= "{$prefix}background-color: #".$this->_hex.";{$suffix}";
 
         /* IE Browsers */
-        $css .= "filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#".$g['light']."', endColorstr='#".$g['dark']."');";
+        $css .= "{$prefix}filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#".$g['light']."', endColorstr='#".$g['dark']."');{$suffix}";
 
         /* Safari 4+, Chrome 1-9 */
-        $css .= "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#".$g['light']."), to(#".$g['dark']."));";
+        $css .= "{$prefix}background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#".$g['light']."), to(#".$g['dark']."));{$suffix}";
 
         /* Safari 5.1+, Mobile Safari, Chrome 10+ */
-        $css .= "background-image: -webkit-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
+        $css .= "{$prefix}background-image: -webkit-linear-gradient(top, #".$g['light'].", #".$g['dark'].");{$suffix}";
 
         /* Firefox 3.6+ */
-        $css .= "background-image: -moz-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
+        $css .= "{$prefix}background-image: -moz-linear-gradient(top, #".$g['light'].", #".$g['dark'].");{$suffix}";
 
         /* IE 10+ */
-        $css .= "background-image: -ms-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
+        $css .= "{$prefix}background-image: -ms-linear-gradient(top, #".$g['light'].", #".$g['dark'].");{$suffix}";
 
         /* Opera 11.10+ */
-        $css .= "background-image: -o-linear-gradient(top, #".$g['light'].", #".$g['dark'].");";
+        $css .= "{$prefix}background-image: -o-linear-gradient(top, #".$g['light'].", #".$g['dark'].");{$suffix}";
 
         // Return our CSS
         return $css;

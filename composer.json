@@ -10,5 +10,8 @@
     "authors" : [
       { "name": "Arlo Carreon", "homepage":"http://arlocarreon.com", "role" : "creator" }
     ],
+    "autoload": {
+      "classmap": ["src"]
+    },
     "bin": ["src/color.php"]
 }

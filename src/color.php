@@ -11,6 +11,7 @@ class Color {
 
     private $_hex;
     private $_hsl;
+    private $_rgb;
 
     /**
      * Auto darkens/lightens by 10% for sexily-subtle gradients.
@@ -36,6 +37,7 @@ class Color {
 
         $this->_hsl = self::hexToHsl( $color );
         $this->_hex = $color;
+        $this->_rgb = self::hexToRgb( $color );
     }
 
     // ====================
@@ -144,6 +146,52 @@ class Color {
 
         return $r.$g.$b;
     }
+
+
+    /**
+     * Given a HEX string returns a RGB array equivalent.
+     * @param string $color
+     * @return array RGB associative array
+     */
+    public static function hexToRgb( $color ){
+
+        // Sanity check
+        $color = self::_checkHex($color);
+
+        // Convert HEX to DEC
+        $R = hexdec($color[0].$color[1]);
+        $G = hexdec($color[2].$color[3]);
+        $B = hexdec($color[4].$color[5]);
+
+        $RGB['R'] = $R;
+        $RGB['G'] = $G;
+        $RGB['B'] = $B;
+
+        return $RGB;
+    }
+
+
+    /**
+     *  Given an RGB associative array returns the equivalent HEX string
+     * @param array $rgb
+     * @return string RGB string
+     * @throws Exception "Bad RGB Array"
+     */
+    public static function rgbToHex( $rgb = array() ){
+         // Make sure it's RGB
+        if(empty($rgb) || !isset($rgb["R"]) || !isset($rgb["G"]) || !isset($rgb["B"]) ) {
+            throw new Exception("Param was not an RGB array");
+        }
+
+        // Convert RGB to HEX
+        $hex[0] = dechex( $rgb['R'] );
+        $hex[1] = dechex( $rgb['G'] );
+        $hex[2] = dechex( $rgb['B'] );
+
+        return implode( '', $hex );
+
+	}
+
 
     /**
      * Given a HEX value, returns a darker color. If no desired amount provided, then the color halfway between

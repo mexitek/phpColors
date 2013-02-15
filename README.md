@@ -94,7 +94,7 @@ echo $myBlue->getCssGradient();
   // fallback background
   background: #336699;
 
-  /* IE Browsers */
+  // IE Browsers
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699'); 
  
   // Safari 4+, Chrome 1-9

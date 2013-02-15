@@ -126,7 +126,9 @@ Auto lightens/darkens by 10% for sexily-subtle gradients
 <p>Would like to add support to custom gradient stops</p>
 </blockquote>
 
-<div class="highlight"><pre><span class="nx">using</span> <span class="nx">phpColors\Color</span><span class="p">;</span>
+<div class="highlight">
+  
+  <pre><span class="nx">using</span> <span class="nx">phpColors\Color</span><span class="p">;</span>
 
 <span class="c1">// Initialize my color</span>
 <span class="nv">$myBlue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Color</span><span class="p">(</span><span class="s2">"#336699"</span><span class="p">);</span>
@@ -138,27 +140,29 @@ Auto lightens/darkens by 10% for sexily-subtle gradients
 <span class="cm">  // fallback background</span>
 <span class="cm">  background: #336699;</span>
 
-<span class="cm">  /* IE Browsers */</span>
-  <span class="nx">filter</span><span class="o">:</span> <span class="nx">progid</span><span class="o">:</span><span class="nx">DXImageTransform</span><span class="o">.</span><span class="nx">Microsoft</span><span class="o">.</span><span class="nx">gradient</span><span class="p">(</span><span class="nx">startColorstr</span><span class="o">=</span><span class="s1">'#8cb3d9'</span><span class="p">,</span> <span class="nx">endColorstr</span><span class="o">=</span><span class="s1">'#336699'</span><span class="p">);</span> 
+<span class="cm">  // IE Browsers</span>
+<span class="cm">  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699'); </span>
 
-  <span class="c1">// Safari 4+, Chrome 1-9</span>
-  <span class="nx">background</span><span class="o">-</span><span class="nx">image</span><span class="o">:</span> <span class="o">-</span><span class="nx">webkit</span><span class="o">-</span><span class="nx">gradient</span><span class="p">(</span><span class="nx">linear</span><span class="p">,</span> <span class="mi">0</span><span class="o">%</span> <span class="mi">0</span><span class="o">%</span><span class="p">,</span> <span class="mi">0</span><span class="o">%</span> <span class="mi">100</span><span class="o">%</span><span class="p">,</span> <span class="nx">from</span><span class="p">(</span><span class="c1">#8cb3d9), to(#336699));</span>
+<span class="cm">  // Safari 4+, Chrome 1-9</span>
+<span class="cm">  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8cb3d9), to(#336699));</span>
 
-  <span class="c1">// Safari 5.1+, Mobile Safari, Chrome 10+</span>
-  <span class="nx">background</span><span class="o">-</span><span class="nx">image</span><span class="o">:</span> <span class="o">-</span><span class="nx">webkit</span><span class="o">-</span><span class="nx">linear</span><span class="o">-</span><span class="nx">gradient</span><span class="p">(</span><span class="nx">top</span><span class="p">,</span> <span class="c1">#8cb3d9, #336699);</span>
+<span class="cm">  // Safari 5.1+, Mobile Safari, Chrome 10+</span>
+<span class="cm">  background-image: -webkit-linear-gradient(top, #8cb3d9, #336699);</span>
 
-  <span class="c1">// Firefox 3.6+</span>
-  <span class="nx">background</span><span class="o">-</span><span class="nx">image</span><span class="o">:</span> <span class="o">-</span><span class="nx">moz</span><span class="o">-</span><span class="nx">linear</span><span class="o">-</span><span class="nx">gradient</span><span class="p">(</span><span class="nx">top</span><span class="p">,</span> <span class="c1">#8cb3d9, #336699);</span>
+<span class="cm">  // Firefox 3.6+</span>
+<span class="cm">  background-image: -moz-linear-gradient(top, #8cb3d9, #336699);</span>
 
-  <span class="c1">// IE 10+</span>
-  <span class="nx">background</span><span class="o">-</span><span class="nx">image</span><span class="o">:</span> <span class="o">-</span><span class="nx">ms</span><span class="o">-</span><span class="nx">linear</span><span class="o">-</span><span class="nx">gradient</span><span class="p">(</span><span class="nx">top</span><span class="p">,</span> <span class="c1">#8cb3d9, #336699);</span>
+<span class="cm">  // IE 10+</span>
+<span class="cm">  background-image: -ms-linear-gradient(top, #8cb3d9, #336699);</span>
 
-  <span class="c1">// Opera 11.10+</span>
-  <span class="nx">background</span><span class="o">-</span><span class="nx">image</span><span class="o">:</span> <span class="o">-</span><span class="nx">o</span><span class="o">-</span><span class="nx">linear</span><span class="o">-</span><span class="nx">gradient</span><span class="p">(</span><span class="nx">top</span><span class="p">,</span> <span class="c1">#8cb3d9, #336699);</span>
+<span class="cm">  // Opera 11.10+</span>
+<span class="cm">  background-image: -o-linear-gradient(top, #8cb3d9, #336699);</span>
 
-<span class="o">*/</span>
+<span class="cm">*/</span>
 
-</pre></div>
+</pre>
+  
+</div>
 <h1>License: <a href="http://arlo.mit-license.org">arlo.mit-license.org</a></h1>
         </section>
 

@@ -12,6 +12,7 @@ Instantiate an object of the color class with a hex color string `$foo = new Col
 - <strong>complementary()</strong> : Returns the color "opposite" or complementary to your color.
 - <strong>getHex()</strong> : Returns the original hex color.
 - <strong>getHsl()</strong> : Returns HSL array for your color.
+- <strong>getRgb()</strong> : Returns RGB array for your color.
 
 > Auto lightens/darkens by 10% for sexily-subtle gradients
 
@@ -28,7 +29,7 @@ $myBlue = new Color("#336699");
 echo $myBlue->darken();
 // 1a334d
 
-echo $myBlue->lighten(); 
+echo $myBlue->lighten();
 // 8cb3d9
 
 echo $myBlue->isLight();
@@ -46,6 +47,9 @@ echo $myBlue->getHex();
 print_r( $myBlue->getHsl() );
 // array( "H"=> 210, "S"=> 0.5, "L"=>0.4 );
 
+print_r( $myBlue->getRgb() );
+// array( "R"=> 51, "G"=> 102, "B"=>153 );
+
 print_r($myBlue->makeGradient());
 // array( "light"=>"8cb3d9" ,"dark"=>"336699" )
 
@@ -55,20 +59,22 @@ print_r($myBlue->makeGradient());
 ## Static Methods
 - <strong>hslToHex( $hsl )</strong> : Convert a HSL array to a HEX string.
 - <strong>hexToHsl( $hex )</strong> : Convert a HEX string into an HSL array.
+- <strong>hexToRgb( $hex )</strong> : Convert a HEX string into an RGB array.
+- <strong>rgbToHex( $rgb )</strong> : Convert an RGB array into a HEX string.
 
 ```php
 /**
  * On The Fly Custom Calculations
  */
- 
+
 using phpColors\Color;
 
  // Convert my HEX
  $myBlue = Color::hexToHsl("#336699");
- 
+
  // Get crazy with the HUE
  $myBlue["H"] = 295;
- 
+
  // Gimme my new color!!
  echo Color::hslToHex($myBlue);
  // 913399
@@ -90,28 +96,28 @@ $myBlue = new Color("#336699");
 // Get CSS
 echo $myBlue->getCssGradient();
 /* - Actual output doesn't have comments and is single line
-  
+
   // fallback background
   background: #336699;
 
   /* IE Browsers */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699'); 
- 
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699');
+
   // Safari 4+, Chrome 1-9
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8cb3d9), to(#336699));
-  
+
   // Safari 5.1+, Mobile Safari, Chrome 10+
   background-image: -webkit-linear-gradient(top, #8cb3d9, #336699);
-  
+
   // Firefox 3.6+
   background-image: -moz-linear-gradient(top, #8cb3d9, #336699);
-  
+
   // IE 10+
   background-image: -ms-linear-gradient(top, #8cb3d9, #336699);
-  
+
   // Opera 11.10+
   background-image: -o-linear-gradient(top, #8cb3d9, #336699);
-  
+
 */
 
 ```

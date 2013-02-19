@@ -123,6 +123,7 @@ echo $myBlue->getCssGradient();
 ```
 
 ## Github Contributors
+- mexitek
 - danielpataki
 - alexmglover
 - intuxicated 

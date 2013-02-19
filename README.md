@@ -123,13 +123,13 @@ echo $myBlue->getCssGradient();
 ```
 
 ## Github Contributors
-- @danielpataki
-- @alexmglover
-- @intuxicated 
-- @pborreli
-- @curtisgibby
-- @matthewpatterson
-- @there4
-- @alex-humphreys
+- danielpataki
+- alexmglover
+- intuxicated 
+- pborreli
+- curtisgibby
+- matthewpatterson
+- there4
+- alex-humphreys
 
 # License: [arlo.mit-license.org](http://arlo.mit-license.org)

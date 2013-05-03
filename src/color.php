@@ -22,11 +22,22 @@ class Color {
 
     /**
      * Instantiates the class with a HEX value
-     * @param string $hex
+     * @param string $color_input
      */
-    function __construct( $hex ) {
-        // Strip # sign is present
-        $color = str_replace("#", "", $hex);
+    function __construct( $color_input ) {
+
+        if( substr_count( $color_input, 'rgb' ) > 0 ) {
+	        // Convert rgb string to hex
+        	preg_match_all( '/[0-9]{1,3}/', $color_input, $matches );
+        	$rgb['R'] = $matches[0][0];
+        	$rgb['G'] = $matches[0][1];
+        	$rgb['B'] = $matches[0][2];
+        	$color = self::rgbToHex( $rgb );
+        }
+        else {
+	        // Strip # sign is present
+        	$color = str_replace("#", "", $color_input);
+        }
 
         // Make sure it's 6 digits
         if( strlen($color) === 3 ) {

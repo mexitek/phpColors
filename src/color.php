@@ -288,9 +288,9 @@ class Color {
         // Return the new value in HEX
         return self::hslToHex($hsl);
     }
-
+    
     /**
-     * Returns your colors HSL array
+     * Returns your color's HSL array
      */
     public function getHsl() {
         return $this->_hsl;
@@ -301,6 +301,13 @@ class Color {
     public function getHex() {
         return $this->_hex;
     }
+    /**
+     * Returns your color's RGB array
+     */
+    public function getRgb() {
+        return $this->_rgb;
+    }
+    
     /**
      * Returns the cross browser CSS3 gradient
      * @param int Optional: percentage amount to light/darken the gradient

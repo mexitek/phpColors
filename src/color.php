@@ -190,7 +190,7 @@ class Color {
 
         return implode( '', $hex );
 
-	}
+  }
 
 
     /**
@@ -217,6 +217,18 @@ class Color {
         $lighterHSL = $this->_lighten($this->_hsl, $amount);
         // Return as HEX
         return self::hslToHex($lighterHSL);
+    }
+
+    /**
+     * Given a HEX value, returns a mixed color. If no desired amount provided, then the color mixed by this ratio
+     * @param int $amount = -100..0..+100
+     * @return string mixed HEX value
+     */
+    public function mix($hex2, $amount = 0){
+        $rgb2 = self::hexToRgb($hex2);
+        $mixed = $this->_mix($this->_rgb, $rgb2, $amount);
+        // Return as HEX
+        return self::rgbToHex($mixed);
     }
 
     /**
@@ -388,6 +400,27 @@ class Color {
 
         return $hsl;
     }
+
+    /**
+     * Mix 2 rgb colors and return an rgb color
+     * @param array $rgb1
+     * @param array $rgb2
+     * @param int $amount ranged -100..0..+100
+     * @return array $rgb
+     *
+     * 	ported from http://phpxref.pagelines.com/nav.html?includes/class.colors.php.source.html
+     */
+    private function _mix($rgb1, $rgb2, $amount = 0) {
+
+         $r1 = ($amount + 100) / 100;
+         $r2 = 2 - $r1;
+
+         $rmix = (($rgb1['R'] * $r1) + ($rgb2['R'] * $r2)) / 2;
+         $gmix = (($rgb1['G'] * $r1) + ($rgb2['G'] * $r2)) / 2;
+         $bmix = (($rgb1['B'] * $r1) + ($rgb2['B'] * $r2)) / 2;
+
+         return array('R' => $rmix, 'G' => $gmix, 'B' => $bmix);
+     }
 
     /**
      * Given a Hue, returns corresponding RGB value

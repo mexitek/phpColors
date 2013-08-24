@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Author: Arlo Carreon <http://arlocarreon.com>
+ * Info: http://mexitek.github.io/phpColors/
+ * License: http://arlo.mit-license.org/
+ */
+
 namespace phpColors;
 
 use \Exception;

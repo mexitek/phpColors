@@ -125,7 +125,7 @@ $myBlue = new Color("#336699");
 echo $myBlue->getCssGradient();
 /* - Actual output doesn't have comments and is single line
   
-  background: #336699; /* fallback background */
+  background: #336699; // fallback background
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699'); // IE Browsers
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8cb3d9), to(#336699)); // Safari 4+, Chrome 1-9
   background-image: -webkit-linear-gradient(top, #8cb3d9, #336699); // Safari 5.1+, Mobile Safari, Chrome 10+

@@ -163,6 +163,26 @@ Auto lightens/darkens by 10% for sexily-subtle gradients
 <span class="cm">*/</span>
 
 </pre>
+
+<p>However, if you want to support the ancient browsers (which has negligible market share and almost died out), you can set the second parameter to <code>TRUE</code>. This will output:</p>
+<div class="highlight highlight-php"><pre><span class="nx">using</span> <span class="nx">phpColors\Color</span><span class="p">;</span>
+<span class="nv">$myBlue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Color</span><span class="p">(</span><span class="s2">"#336699"</span><span class="p">);</span>
+
+<span class="c1">// Get CSS</span>
+<span class="k">echo</span> <span class="nv">$myBlue</span><span class="o">-&gt;</span><span class="na">getCssGradient</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+<span class="cm">/* - Actual output doesn't have comments and is single line</span>
+
+<span class="cm">  background: #336699; // fallback background</span>
+<span class="cm">  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699'); // IE Browsers</span>
+<span class="cm">  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8cb3d9), to(#336699)); // Safari 4+, Chrome 1-9</span>
+<span class="cm">  background-image: -webkit-linear-gradient(top, #8cb3d9, #336699); // Safari 5.1+, Mobile Safari, Chrome 10+</span>
+<span class="cm">  background-image: -moz-linear-gradient(top, #8cb3d9, #336699); // Firefox 3.6+</span>
+<span class="cm">  background-image: -o-linear-gradient(top, #8cb3d9, #336699); // Opera 11.10+</span>
+<span class="cm">  background-image: linear-gradient(to bottom, #8cb3d9, #336699); // Standards</span>
+
+<span class="cm">*/</span>
+
+</pre></div>
   
 </div>
 <h2>Github Contributors</h2>

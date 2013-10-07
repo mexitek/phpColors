@@ -60,7 +60,7 @@ $myVintage = new Color("#bada55");
 	}
 
 	.testDiv4{
-		<?= $myVintage->getCssGradient(30, "", "", true);?> 
+		<?= $myVintage->getCssGradient(30, true);?> 
 		color: <?=($myVintage->isDark() ? "#EEE":"#333")?>;
 	}
 </style>

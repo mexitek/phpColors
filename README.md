@@ -104,20 +104,35 @@ echo $myBlue->getCssGradient();
   // IE Browsers
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699'); 
  
-  // Safari 4+, Chrome 1-9
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8cb3d9), to(#336699));
-
   // Safari 5.1+, Mobile Safari, Chrome 10+
   background-image: -webkit-linear-gradient(top, #8cb3d9, #336699);
 
-  // Firefox 3.6+
-  background-image: -moz-linear-gradient(top, #8cb3d9, #336699);
+  // Standards
+  background-image: linear-gradient(to bottom, #8cb3d9, #336699);
 
-  // IE 10+
-  background-image: -ms-linear-gradient(top, #8cb3d9, #336699);
+*/
 
-  // Opera 11.10+
-  background-image: -o-linear-gradient(top, #8cb3d9, #336699);
+```
+
+However, if you want to support the ancient browsers (which has negligible market share and almost died out), you can set the second parameter to `TRUE`. This will output:
+
+```php
+
+using phpColors\Color;
+$myBlue = new Color("#336699");
+
+// Get CSS
+echo $myBlue->getCssGradient();
+/* - Actual output doesn't have comments and is single line
+  
+  background: #336699; /* fallback background */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699'); /* IE Browsers */
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8cb3d9), to(#336699)); /* Safari 4+, Chrome 1-9 */
+  background-image: -webkit-linear-gradient(top, #8cb3d9, #336699); /* Safari 5.1+, Mobile Safari, Chrome 10+ */
+  background-image: -moz-linear-gradient(top, #8cb3d9, #336699); /* Firefox 3.6+ */
+  background-image: -ms-linear-gradient(top, #8cb3d9, #336699); /* IE 10+ */
+  background-image: -o-linear-gradient(top, #8cb3d9, #336699); /* Opera 11.10+ */
+  background-image: linear-gradient(to bottom, #8cb3d9, #336699); /* Standards */
 
 */
 

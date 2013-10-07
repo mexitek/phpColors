@@ -329,11 +329,13 @@ class Color {
     /**
      * Returns the cross browser CSS3 gradient
      * @param int Optional: percentage amount to light/darken the gradient
+     * @param boolean $vintageBrowsers Optional: include vendor prefixes for browsers that almost died out already
      * @param string $prefix Optional: prefix for every lines
      * @param string $suffix Optional: suffix for every lines
+     * @link  http://caniuse.com/css-gradients Resource for the browser support
      * @return string CSS3 gradient for chrome, safari, firefox, opera and IE10
      */
-    public function getCssGradient($amount = self::DEFAULT_ADJUST, $suffix = "" , $prefix = "" ) {
+    public function getCssGradient( $amount = self::DEFAULT_ADJUST, $vintageBrowsers = FALSE, $suffix = "" , $prefix = "" ) {
 
         // Get the recommended gradient
         $g = $this->makeGradient($amount);
@@ -346,19 +348,25 @@ class Color {
         $css .= "{$prefix}filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#".$g['light']."', endColorstr='#".$g['dark']."');{$suffix}";
 
         /* Safari 4+, Chrome 1-9 */
-        $css .= "{$prefix}background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#".$g['light']."), to(#".$g['dark']."));{$suffix}";
+        if ( $vintageBrowsers ) {
+            $css .= "{$prefix}background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#".$g['light']."), to(#".$g['dark']."));{$suffix}";
+        }
 
         /* Safari 5.1+, Mobile Safari, Chrome 10+ */
         $css .= "{$prefix}background-image: -webkit-linear-gradient(top, #".$g['light'].", #".$g['dark'].");{$suffix}";
 
         /* Firefox 3.6+ */
-        $css .= "{$prefix}background-image: -moz-linear-gradient(top, #".$g['light'].", #".$g['dark'].");{$suffix}";
-
-        /* IE 10+ */
-        $css .= "{$prefix}background-image: -ms-linear-gradient(top, #".$g['light'].", #".$g['dark'].");{$suffix}";
+        if ( $vintageBrowsers ) {
+            $css .= "{$prefix}background-image: -moz-linear-gradient(top, #".$g['light'].", #".$g['dark'].");{$suffix}";
+        }
 
         /* Opera 11.10+ */
-        $css .= "{$prefix}background-image: -o-linear-gradient(top, #".$g['light'].", #".$g['dark'].");{$suffix}";
+        if ( $vintageBrowsers ) {
+            $css .= "{$prefix}background-image: -o-linear-gradient(top, #".$g['light'].", #".$g['dark'].");{$suffix}";
+        }
+
+        /* Unprefixed version (standards): FF 16+, IE10+, Chrome 26+, Safari 7+, Opera 12.1+ */
+        $css .= "{$prefix}background-image: linear-gradient(to bottom, #".$g['light'].", #".$g['dark'].");{$suffix}";
 
         // Return our CSS
         return $css;

@@ -329,8 +329,8 @@ class Color {
     /**
      * Returns the cross browser CSS3 gradient
      * @param int Optional: percentage amount to light/darken the gradient
-     * @param string $prefix Optional: prefix for every lines
      * @param boolean $vintageBrowsers Optional: include vendor prefixes for browsers that almost died out already
+     * @param string $prefix Optional: prefix for every lines
      * @param string $suffix Optional: suffix for every lines
      * @link  http://caniuse.com/css-gradients Resource for the browser support
      * @return string CSS3 gradient for chrome, safari, firefox, opera and IE10

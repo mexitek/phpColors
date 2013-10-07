@@ -83,7 +83,7 @@ using phpColors\Color;
 ```
 
 ## CSS Helpers
-- <strong>getCssGradient( [$amount] )</strong> : Generates the CSS3 gradients for safari, chrome, opera, firefox and IE10. Optional percentage amount for lighter/darker shade.
+- <strong>getCssGradient( [$amount] [, $vintageBrowsers] )</strong> : Generates the CSS3 gradients for safari, chrome, opera, firefox and IE10. Optional percentage amount for lighter/darker shade. Optional boolean for older gradient CSS support.
 
 > Would like to add support to custom gradient stops
 

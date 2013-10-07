@@ -8,6 +8,7 @@ use phpColors\Color;
 $myBlue = new Color("#336699");
 $myBlack = new Color("#333");
 $myPurple = new Color("#913399"); 
+$myVintage = new Color("#bada55"); 
 
 // ************** No Need to Change Below **********************
 ?>
@@ -22,10 +23,17 @@ $myPurple = new Color("#913399");
 		margin:0px;
 		float:left;
 	}
+	.wide-block {
+		width: 360px;
+		padding-top: 70px;
+		padding-left: 20px;
+		padding-right: 20px;
+		margin-top: 10px;
+	}
 	.clear{ clear:both; }
 	
 	.testDiv{
-		<?= $myBlue->getCssGradient();?>
+		<?= $myBlue->getCssGradient();?> 
 		color: <?=($myBlue->isDark() ? "#EEE":"#333")?>;
 	}
 	.testDiv.plain{
@@ -34,7 +42,7 @@ $myPurple = new Color("#913399");
 	}
 	
 	.testDiv2{
-		<?= $myBlack->getCssGradient();?>
+		<?= $myBlack->getCssGradient();?> 
 		color: <?=($myBlack->isDark() ? "#EEE":"#333")?>;
 	}
 	.testDiv2.plain{
@@ -43,12 +51,17 @@ $myPurple = new Color("#913399");
 	}
 	
 	.testDiv3{
-		<?= $myPurple->getCssGradient();?>
+		<?= $myPurple->getCssGradient();?> 
 		color: <?=($myPurple->isDark() ? "#EEE":"#333")?>;
 	}
 	.testDiv3.plain{
 		background: #<?= $myPurple->getHex();?>;
 		color: <?=($myPurple->isDark() ? "#EEE":"#333")?>;
+	}
+
+	.testDiv4{
+		<?= $myVintage->getCssGradient(30, "", "", true);?> 
+		color: <?=($myVintage->isDark() ? "#EEE":"#333")?>;
 	}
 </style>
 <div class="clear"></div>
@@ -60,3 +73,5 @@ $myPurple = new Color("#913399");
 <div class="clear"></div>
 <div class="block testDiv3">phpColor Gradient #<?= $myPurple->getHex();?></div>
 <div class="block testDiv3 plain">Plain #<?= $myPurple->getHex();?></div>
+<div class="clear"></div>
+<div class="block wide-block testDiv4">phpColor Gradient with vintage browsers support #<?= $myVintage->getHex();?></div>

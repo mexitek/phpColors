@@ -122,7 +122,7 @@ using phpColors\Color;
 $myBlue = new Color("#336699");
 
 // Get CSS
-echo $myBlue->getCssGradient();
+echo $myBlue->getCssGradient(10, TRUE);
 /* - Actual output doesn't have comments and is single line
   
   background: #336699; // fallback background

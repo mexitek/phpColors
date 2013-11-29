@@ -18,6 +18,7 @@ class Color {
     private $_hex;
     private $_hsl;
     private $_rgb;
+    private $_rgba;
 
     /**
      * Auto darkens/lightens by 10% for sexily-subtle gradients.
@@ -44,6 +45,7 @@ class Color {
         $this->_hsl = self::hexToHsl( $color );
         $this->_hex = $color;
         $this->_rgb = self::hexToRgb( $color );
+        $this->_rgba = self::hexToRgb( $color );
     }
 
     // ====================
@@ -180,7 +182,7 @@ class Color {
     /**
      *  Given an RGB associative array returns the equivalent HEX string
      * @param array $rgb
-     * @return string RGB string
+     * @return string HEX Value
      * @throws Exception "Bad RGB Array"
      */
     public static function rgbToHex( $rgb = array() ){
@@ -197,6 +199,52 @@ class Color {
         return implode( '', $hex );
 
   }
+
+    /**
+     * Given a HEX string returns a RGBA array equivalent.
+     * @param string $color
+     * @return array RGBA associative array
+     */
+    public static function hexToRgba( $color ){
+
+        // Sanity check
+        $color = self::_checkHex($color);
+
+        // Convert HEX to DEC
+        $R = hexdec($color[0].$color[1]);
+        $G = hexdec($color[2].$color[3]);
+        $B = hexdec($color[4].$color[5]);
+        $A = 1;
+
+        $RGBA['R'] = $R;
+        $RGBA['G'] = $G;
+        $RGBA['B'] = $B;
+		$RGBA['A'] = $A;
+
+        return $RGBA;
+    }
+
+
+    /**
+     *  Given an RGBA associative array returns the equivalent HEX string
+     * @param array $rgba
+     * @return string HEX value
+     * @throws Exception "Bad RGB Array"
+     */
+    public static function rgbaToHex( $rgb = array() ){
+         // Make sure it's RGB
+        if(empty($rgb) || !isset($rgb["R"]) || !isset($rgb["G"]) || !isset($rgb["B"]) || !isset($rgb["A"]) ) {
+            throw new Exception("Param was not an RGBA array");
+        }
+
+        // Convert RGB to HEX
+        $hex[0] = dechex( $rgb['R'] );
+        $hex[1] = dechex( $rgb['G'] );
+        $hex[2] = dechex( $rgb['B'] );
+
+        return implode( '', $hex );
+
+	}
 
 
     /**
@@ -256,6 +304,19 @@ class Color {
         return array( "light" => $lightColor, "dark" => $darkColor );
     }
 
+    /**
+     * Given an opacity value from 0-1 it returns an rgba string of the color with the propert opacty set
+     * @param int $opacity
+     * @return string RGBA value
+     */
+    public function modifyOpacity( $opacity = 1 ){
+       	// Get RGBA value
+        $rgba = $this->_rgba;
+        // Replace opacity with the new one
+        $rgba['A'] = $opacity;
+        // Return as HEX
+        return $rgba;
+    }
 
     /**
      * Returns whether or not given color is considered "light"
@@ -306,7 +367,7 @@ class Color {
         // Return the new value in HEX
         return self::hslToHex($hsl);
     }
-    
+
     /**
      * Returns your color's HSL array
      */
@@ -325,7 +386,13 @@ class Color {
     public function getRgb() {
         return $this->_rgb;
     }
-    
+    /**
+     * Returns your color's RGBA array
+     */
+    public function getRgba() {
+        return $this->_rgba;
+    }
+
     /**
      * Returns the cross browser CSS3 gradient
      * @param int Optional: percentage amount to light/darken the gradient

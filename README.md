@@ -14,6 +14,7 @@ Instantiate an object of the color class with a hex color string `$foo = new Col
 - <strong>getHex()</strong> : Returns the original hex color.
 - <strong>getHsl()</strong> : Returns HSL array for your color.
 - <strong>getRgb()</strong> : Returns RGB array for your color.
+- <strong>getRgba()</strong> : Returns RGBA array for your color.
 
 > Auto lightens/darkens by 10% for sexily-subtle gradients
 
@@ -51,6 +52,12 @@ print_r( $myBlue->getHsl() );
 print_r( $myBlue->getRgb() );
 // array( "R"=> 51, "G"=> 102, "B"=>153 );
 
+print_r( $myBlue->getRgb() );
+// array( "R"=> 51, "G"=> 102, "B"=>153, "A"=>1 );
+
+print_r( $myBlue->modifyOpacity( 0.4 ) );
+// array( "R"=> 51, "G"=> 102, "B"=>153, "A"=>0.4 );
+
 print_r($myBlue->makeGradient());
 // array( "light"=>"8cb3d9" ,"dark"=>"336699" )
 
@@ -62,6 +69,8 @@ print_r($myBlue->makeGradient());
 - <strong>hexToHsl( $hex )</strong> : Convert a HEX string into an HSL array.
 - <strong>hexToRgb( $hex )</strong> : Convert a HEX string into an RGB array.
 - <strong>rgbToHex( $rgb )</strong> : Convert an RGB array into a HEX string.
+- <strong>hexToRgba( $hex )</strong> : Convert a HEX string into an RGBA array.
+- <strong>rgbaToHex( $rgb )</strong> : Convert an RGBA array into a HEX string.
 
 ```php
 /**
@@ -102,8 +111,8 @@ echo $myBlue->getCssGradient();
   background: #336699;
 
   // IE Browsers
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699'); 
- 
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699');
+
   // Safari 5.1+, Mobile Safari, Chrome 10+
   background-image: -webkit-linear-gradient(top, #8cb3d9, #336699);
 
@@ -124,7 +133,7 @@ $myBlue = new Color("#336699");
 // Get CSS
 echo $myBlue->getCssGradient(10, TRUE);
 /* - Actual output doesn't have comments and is single line
-  
+
   background: #336699; // fallback background
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699'); // IE Browsers
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8cb3d9), to(#336699)); // Safari 4+, Chrome 1-9
@@ -141,7 +150,7 @@ echo $myBlue->getCssGradient(10, TRUE);
 - mexitek
 - danielpataki
 - alexmglover
-- intuxicated 
+- intuxicated
 - pborreli
 - curtisgibby
 - matthewpatterson

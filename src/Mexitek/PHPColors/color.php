@@ -6,7 +6,7 @@
  * License: http://arlo.mit-license.org/
  */
 
-namespace phpColors;
+namespace Mexitek\PHPColors;
 
 use \Exception;
 

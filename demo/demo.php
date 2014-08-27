@@ -1,6 +1,6 @@
 <?php 
 
-include("../src/color.php");
+include("../src/Color.php");
 
 use phpColors\Color;
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../src/color.php";
+require_once __DIR__ . "/../src/Color.php";
 use phpColors\Color;
 
 class ColorTest extends PHPUnit_Framework_TestCase {
@@ -47,4 +47,4 @@ class ColorTest extends PHPUnit_Framework_TestCase {
 
 }
 
-/* End of file color.php */
+/* End of file Color.php */

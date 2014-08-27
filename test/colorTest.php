@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../src/Mexitek/PHPColors/Color.php";
-use phpColors\Color;
+use Mexitek\PHPColors\Color;
 
 class ColorTest extends PHPUnit_Framework_TestCase {
 

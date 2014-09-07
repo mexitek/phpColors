@@ -12,6 +12,5 @@
     ],
     "autoload": {
       "classmap": ["src"]
-    },
-    "bin": ["src/Color.php"]
+    }
 }

@@ -22,7 +22,7 @@ Instantiate an object of the color class with a hex color string `$foo = new Col
  * Using The Class
  */
 
-using phpColors\Color;
+use Mexitek\PHPColors\Color;
 
 // Initialize my color
 $myBlue = new Color("#336699");
@@ -68,7 +68,7 @@ print_r($myBlue->makeGradient());
  * On The Fly Custom Calculations
  */
 
-using phpColors\Color;
+use Mexitek\PHPColors\Color;
 
  // Convert my HEX
  $myBlue = Color::hexToHsl("#336699");
@@ -89,7 +89,7 @@ using phpColors\Color;
 
 ```php
 
-using phpColors\Color;
+use Mexitek\PHPColors\Color;
 
 // Initialize my color
 $myBlue = new Color("#336699");
@@ -118,7 +118,7 @@ However, if you want to support the ancient browsers (which has negligible marke
 
 ```php
 
-using phpColors\Color;
+use Mexitek\PHPColors\Color;
 $myBlue = new Color("#336699");
 
 // Get CSS

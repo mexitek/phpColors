@@ -2,7 +2,7 @@
 
 include("../src/Color.php");
 
-use phpColors\Color;
+use Mexitek\PHPColors\Color;
 
 // Use different colors to test
 $myBlue = new Color("#336699");

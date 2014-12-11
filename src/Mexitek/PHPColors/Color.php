@@ -29,6 +29,7 @@ class Color {
     /**
      * Instantiates the class with a HEX value
      * @param string $hex
+     * @throws Exception "Bad color format"
      */
     function __construct( $hex ) {
         // Strip # sign is present

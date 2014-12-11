@@ -29,6 +29,7 @@ class Color {
     /**
      * Instantiates the class with a HEX value
      * @param string $hex
+     * @throws Exception "Bad color format"
      */
     function __construct( $hex ) {
         // Strip # sign is present
@@ -227,6 +228,7 @@ class Color {
 
     /**
      * Given a HEX value, returns a mixed color. If no desired amount provided, then the color mixed by this ratio
+     * @param string $hex2 Secondary HEX value to mix with
      * @param int $amount = -100..0..+100
      * @return string mixed HEX value
      */
@@ -328,7 +330,7 @@ class Color {
     
     /**
      * Returns the cross browser CSS3 gradient
-     * @param int Optional: percentage amount to light/darken the gradient
+     * @param int $amount Optional: percentage amount to light/darken the gradient
      * @param boolean $vintageBrowsers Optional: include vendor prefixes for browsers that almost died out already
      * @param string $prefix Optional: prefix for every lines
      * @param string $suffix Optional: suffix for every lines
@@ -438,9 +440,9 @@ class Color {
 
     /**
      * Given a Hue, returns corresponding RGB value
-     * @param type $v1
-     * @param type $v2
-     * @param type $vH
+     * @param int $v1
+     * @param int $v2
+     * @param int $vH
      * @return int
      */
     private static function _huetorgb( $v1,$v2,$vH ) {

@@ -4,7 +4,7 @@
 
 ### Composer
 
-Simply require `mexitek/phpcolors` from the root of your project:
+Simply add `mexitek/phpcolors` to `composer.json` using `dev-master`.
 
 `composer require mexitek/phpcolors dev-master`
 

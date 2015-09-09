@@ -1,5 +1,13 @@
 ### Last Build: [![Build Status](https://secure.travis-ci.org/mexitek/phpColors.png)](http://travis-ci.org/mexitek/phpColors)
 
+## Installation
+
+### Composer
+
+Simply add `mexitek/phpcolors` to `composer.json` using `dev-master`.
+
+`composer require mexitek/phpcolors dev-master`
+
 ## How it works
 Instantiate an object of the color class with a hex color string `$foo = new Color("336699")`.  That's it!  Now, call the methods you need for different color variants.
 

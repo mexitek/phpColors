@@ -272,6 +272,7 @@ class Color {
         $r = hexdec($color[0].$color[1]);
         $g = hexdec($color[2].$color[3]);
         $b = hexdec($color[4].$color[5]);
+        
         return (( $r*299 + $g*587 + $b*114 )/1000 > $lighterThan);
     }
 
@@ -288,6 +289,7 @@ class Color {
         $r = hexdec($color[0].$color[1]);
         $g = hexdec($color[2].$color[3]);
         $b = hexdec($color[4].$color[5]);
+
         return (( $r*299 + $g*587 + $b*114 )/1000 <= $darkerThen);
     }
 

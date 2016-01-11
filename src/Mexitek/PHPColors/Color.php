@@ -262,35 +262,33 @@ class Color {
     /**
      * Returns whether or not given color is considered "light"
      * @param string|Boolean $color
+     * @param int $lighterThan
      * @return boolean
      */
-    public function isLight( $color = FALSE ){
+    public function isLight( $color = FALSE, $lighterThan = 130 ){
         // Get our color
         $color = ($color) ? $color : $this->_hex;
-
         // Calculate straight from rbg
         $r = hexdec($color[0].$color[1]);
         $g = hexdec($color[2].$color[3]);
         $b = hexdec($color[4].$color[5]);
-
-        return (( $r*299 + $g*587 + $b*114 )/1000 > 130);
+        return (( $r*299 + $g*587 + $b*114 )/1000 > $lighterThan);
     }
 
     /**
      * Returns whether or not a given color is considered "dark"
      * @param string|Boolean $color
+     * @param int $darkerThen
      * @return boolean
      */
-    public function isDark( $color = FALSE ){
+    public function isDark( $color = FALSE, $darkerThen = 130 ){
         // Get our color
         $color = ($color) ? $color:$this->_hex;
-
         // Calculate straight from rbg
         $r = hexdec($color[0].$color[1]);
         $g = hexdec($color[2].$color[3]);
         $b = hexdec($color[4].$color[5]);
-
-        return (( $r*299 + $g*587 + $b*114 )/1000 <= 130);
+        return (( $r*299 + $g*587 + $b*114 )/1000 <= $darkerThen);
     }
 
     /**

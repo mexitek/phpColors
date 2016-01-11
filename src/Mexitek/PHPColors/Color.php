@@ -190,10 +190,11 @@ class Color {
             throw new Exception("Param was not an RGB array");
         }
 
+        // https://github.com/mexitek/phpColors/issues/25#issuecomment-88354815
         // Convert RGB to HEX
-        $hex[0] = dechex( $rgb['R'] );
-        $hex[1] = dechex( $rgb['G'] );
-        $hex[2] = dechex( $rgb['B'] );
+        $hex[0] = str_pad(dechex($rgb['R']), 2, '0', STR_PAD_LEFT);
+        $hex[1] = str_pad(dechex($rgb['G']), 2, '0', STR_PAD_LEFT);
+        $hex[2] = str_pad(dechex($rgb['B']), 2, '0', STR_PAD_LEFT);
 
         return implode( '', $hex );
 
@@ -262,9 +263,10 @@ class Color {
     /**
      * Returns whether or not given color is considered "light"
      * @param string|Boolean $color
+     * @param int $lighterThan
      * @return boolean
      */
-    public function isLight( $color = FALSE ){
+    public function isLight( $color = FALSE, $lighterThan = 130 ){
         // Get our color
         $color = ($color) ? $color : $this->_hex;
 
@@ -273,15 +275,16 @@ class Color {
         $g = hexdec($color[2].$color[3]);
         $b = hexdec($color[4].$color[5]);
 
-        return (( $r*299 + $g*587 + $b*114 )/1000 > 130);
+        return (( $r*299 + $g*587 + $b*114 )/1000 > $lighterThan);
     }
 
     /**
      * Returns whether or not a given color is considered "dark"
      * @param string|Boolean $color
+     * @param int $darkerThen
      * @return boolean
      */
-    public function isDark( $color = FALSE ){
+    public function isDark( $color = FALSE, $darkerThen = 130 ){
         // Get our color
         $color = ($color) ? $color:$this->_hex;
 
@@ -290,7 +293,7 @@ class Color {
         $g = hexdec($color[2].$color[3]);
         $b = hexdec($color[4].$color[5]);
 
-        return (( $r*299 + $g*587 + $b*114 )/1000 <= 130);
+        return (( $r*299 + $g*587 + $b*114 )/1000 <= $darkerThen);
     }
 
     /**

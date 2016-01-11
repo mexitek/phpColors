@@ -190,10 +190,11 @@ class Color {
             throw new Exception("Param was not an RGB array");
         }
 
+        // https://github.com/mexitek/phpColors/issues/25#issuecomment-88354815
         // Convert RGB to HEX
-        $hex[0] = dechex( $rgb['R'] );
-        $hex[1] = dechex( $rgb['G'] );
-        $hex[2] = dechex( $rgb['B'] );
+        $hex[0] = str_pad(dechex($rgb['R']), 2, '0', STR_PAD_LEFT);
+        $hex[1] = str_pad(dechex($rgb['G']), 2, '0', STR_PAD_LEFT);
+        $hex[2] = str_pad(dechex($rgb['B']), 2, '0', STR_PAD_LEFT);
 
         return implode( '', $hex );
 

@@ -185,17 +185,15 @@ class Color {
      * @throws Exception "Bad RGB Array"
      */
     public static function rgbToHex( $rgb = array() ){
-         // Make sure it's RGB
-        if(empty($rgb) || !isset($rgb["R"]) || !isset($rgb["G"]) || !isset($rgb["B"]) || count($rgb) !== 3) {
-            throw new Exception("Param was not an RGB array");
-        }
+
+        static::_checkRgb($rgb);
 
         array_walk($rgb, function ($value, $key) {
             return dechex($value);
         });
-        return vsprintf('%02x%02x%02x', $rgb);
 
-  }
+        return vsprintf('%02x%02x%02x', $rgb);
+    }
 
 
     /**
@@ -488,6 +486,27 @@ class Color {
         }
 
         return $color;
+    }
+
+    private static function _checkRgb( $rgb ) {
+        if( !is_array($rgb) ) {
+            throw new Exception('Given parameter has to be an array');
+        }
+        if( count($rgb) !== 3 ) {
+             throw new Exception('Given RBG array has to contain exactly 3 values');
+        }
+        // Make sure it's RGB
+        if( !isset($rgb["R"]) || !isset($rgb["G"]) || !isset($rgb["B"]) ) {
+            throw new Exception('Given RBG array has to contain R, G and B keys');
+        }
+        array_walk($rgb, function($value, $key) {
+            if (!is_int($value)) {
+                throw new Exception(sprintf('RGB array has to contain only integer values (invalid key "%s")', $key));
+            }
+            if ($value < 0 || $value > 255) {
+                throw new Exception(sprintf('RGB array has to contain integer values >= 0 and <= 255 (invalid key "%s")', $key));
+            }
+        });
     }
 
 }

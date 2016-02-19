@@ -8,8 +8,6 @@
 
 namespace Mexitek\PHPColors;
 
-use \Exception;
-
 /**
  * A color utility that helps manipulate HEX colors
  */
@@ -29,7 +27,7 @@ class Color {
     /**
      * Instantiates the class with a HEX value
      * @param string $hex
-     * @throws Exception "Bad color format"
+     * @throws ColorException "Bad color format"
      */
     function __construct( $hex ) {
         // Strip # sign is present
@@ -39,7 +37,7 @@ class Color {
         if( strlen($color) === 3 ) {
             $color = $color[0].$color[0].$color[1].$color[1].$color[2].$color[2];
         } else if( strlen($color) != 6 ) {
-            throw new Exception("HEX color needs to be 6 or 3 digits long");
+            throw new ColorException("HEX color needs to be 6 or 3 digits long");
         }
 
         $this->_hsl = self::hexToHsl( $color );
@@ -111,12 +109,12 @@ class Color {
      *  Given a HSL associative array returns the equivalent HEX string
      * @param array $hsl
      * @return string HEX string
-     * @throws Exception "Bad HSL Array"
+     * @throws ColorException "Bad HSL Array"
      */
     public static function hslToHex( $hsl = array() ){
          // Make sure it's HSL
         if(empty($hsl) || !isset($hsl["H"]) || !isset($hsl["S"]) || !isset($hsl["L"]) ) {
-            throw new Exception("Param was not an HSL array");
+            throw new ColorException("Param was not an HSL array");
         }
 
         list($H,$S,$L) = array( $hsl['H']/360,$hsl['S'],$hsl['L'] );
@@ -182,7 +180,7 @@ class Color {
      *  Given an RGB associative array returns the equivalent HEX string
      * @param array $rgb
      * @return string RGB string
-     * @throws Exception "Bad RGB Array"
+     * @throws ColorException "Bad RGB Array"
      */
     public static function rgbToHex( $rgb = array() ){
 
@@ -472,7 +470,7 @@ class Color {
      * You need to check if you were given a good hex string
      * @param string $hex
      * @return string Color
-     * @throws Exception "Bad color format"
+     * @throws ColorException "Bad color format"
      */
     private static function _checkHex( $hex ) {
         // Strip # sign is present
@@ -482,7 +480,7 @@ class Color {
         if( strlen($color) == 3 ) {
             $color = $color[0].$color[0].$color[1].$color[1].$color[2].$color[2];
         } else if( strlen($color) != 6 ) {
-            throw new Exception("HEX color needs to be 6 or 3 digits long");
+            throw new ColorException("HEX color needs to be 6 or 3 digits long");
         }
 
         return $color;
@@ -490,21 +488,21 @@ class Color {
 
     private static function _checkRgb( $rgb ) {
         if( !is_array($rgb) ) {
-            throw new Exception('Given parameter has to be an array');
+            throw new ColorException('Given parameter has to be an array');
         }
         if( count($rgb) !== 3 ) {
-             throw new Exception('Given RBG array has to contain exactly 3 values');
+             throw new ColorException('Given RBG array has to contain exactly 3 values');
         }
         // Make sure it's RGB
         if( !isset($rgb["R"]) || !isset($rgb["G"]) || !isset($rgb["B"]) ) {
-            throw new Exception('Given RBG array has to contain R, G and B keys');
+            throw new ColorException('Given RBG array has to contain R, G and B keys');
         }
         array_walk($rgb, function($value, $key) {
             if (!is_int($value)) {
-                throw new Exception(sprintf('RGB array has to contain only integer values (invalid key "%s")', $key));
+                throw new ColorException(sprintf('RGB array has to contain only integer values (invalid key "%s")', $key));
             }
             if ($value < 0 || $value > 255) {
-                throw new Exception(sprintf('RGB array has to contain integer values >= 0 and <= 255 (invalid key "%s")', $key));
+                throw new ColorException(sprintf('RGB array has to contain integer values >= 0 and <= 255 (invalid key "%s")', $key));
             }
         });
     }

@@ -19,20 +19,20 @@ foreach ($expected as $hex => $rgb) {
 
 Assert::exception(function() {
     Color::rgbToHex(['R' => 0, 'G' => 0]);
-}, 'Exception', 'Given RBG array has to contain exactly 3 values');
+}, 'Mexitek\PHPColors\ColorException', 'Given RBG array has to contain exactly 3 values');
 
 Assert::exception(function() {
     Color::rgbToHex(['R' => 0, 'G' => 0, 'B' => 4, 'A' => 8]);
-}, 'Exception', 'Given RBG array has to contain exactly 3 values');
+}, 'Mexitek\PHPColors\ColorException', 'Given RBG array has to contain exactly 3 values');
 
 Assert::exception(function() {
     Color::rgbToHex(['R' => 0, 'G' => 0, 'A' => 8]);
-}, 'Exception', 'Given RBG array has to contain R, G and B keys');
+}, 'Mexitek\PHPColors\ColorException', 'Given RBG array has to contain R, G and B keys');
 
 Assert::exception(function() {
     Color::rgbToHex(['R' => 0, 'G' => 'dog', 'B' => 8]);
-}, 'Exception', 'RGB array has to contain only integer values (invalid key "G")');
+}, 'Mexitek\PHPColors\ColorException', 'RGB array has to contain only integer values (invalid key "G")');
 
 Assert::exception(function() {
     Color::rgbToHex(['R' => 0, 'G' => 824, 'B' => 8]);
-}, 'Exception', 'RGB array has to contain integer values >= 0 and <= 255 (invalid key "G")');
+}, 'Mexitek\PHPColors\ColorException', 'RGB array has to contain integer values >= 0 and <= 255 (invalid key "G")');

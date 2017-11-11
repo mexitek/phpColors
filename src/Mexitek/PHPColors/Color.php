@@ -492,5 +492,13 @@ class Color {
 
         return $color;
     }
+    
+    /**
+     * Converts object into its string representation
+     * @return string Color
+     */
+    public function __toString() {
+        return $this->getHex();
+    }
 
 }

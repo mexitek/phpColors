@@ -498,7 +498,7 @@ class Color {
      * @return string Color
      */
     public function __toString() {
-        return $this->getHex();
+        return "#".$this->getHex();
     }
 
 }

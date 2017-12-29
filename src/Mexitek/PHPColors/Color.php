@@ -501,4 +501,73 @@ class Color {
         return "#".$this->getHex();
     }
 
+    public function __get($name)
+    {
+        switch (strtolower($name))
+        {
+            case 'red':
+            case 'r':
+                return $this->_rgb["R"];
+            case 'green':
+            case 'g':
+                return $this->_rgb["G"];
+            case 'blue':
+            case 'b':
+                return $this->_rgb["B"];
+            case 'hue':
+            case 'h':
+                return $this->_hsl["H"];
+            case 'saturation':
+            case 's':
+                return $this->_hsl["S"];
+            case 'lightness':
+            case 'l':
+                return $this->_hsl["L"];
+        }
+    }
+
+    public function __set($name, $value)
+    {
+        switch (strtolower($name))
+        {
+            case 'red':
+            case 'r':
+                $this->_rgb["R"] = $value;
+                $this->_hex = $this->rgbToHex($this->_rgb);
+                $this->_hsl = $this->hexToHsl($this->_hex);
+                break;
+            case 'green':
+            case 'g':
+                $this->_rgb["G"] = $value;
+                $this->_hex = $this->rgbToHex($this->_rgb);
+                $this->_hsl = $this->hexToHsl($this->_hex);
+                break;
+            case 'blue':
+            case 'b':
+                $this->_rgb["B"] = $value;
+                $this->_hex = $this->rgbToHex($this->_rgb);
+                $this->_hsl = $this->hexToHsl($this->_hex);
+                break;
+            case 'hue':
+            case 'h':
+                $this->_hsl["H"] = $value;
+                $this->_hex = $this->hslToHex($this->_hsl);
+                $this->_rgb = $this->hexToRgb($this->_hex);
+                break;
+            case 'saturation':
+            case 's':
+                $this->_hsl["S"] = $value;
+                $this->_hex = $this->hslToHex($this->_hsl);
+                $this->_rgb = $this->hexToRgb($this->_hex);
+                break;
+            case 'lightness':
+            case 'light':
+            case 'l':
+                $this->_hsl["L"] = $value;
+                $this->_hex = $this->hslToHex($this->_hsl);
+                $this->_rgb = $this->hexToRgb($this->_hex);
+                break;
+        }
+    }
 }
+?>

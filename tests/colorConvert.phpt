@@ -11,6 +11,11 @@ $blue = [
 	'G' => 158,
 	'B' => 204,
 ];
+$yellow = [
+	'R' => 244,
+	'G' => 231,
+	'B' => 15,
+];
 $black = [
 	'R' => 0,
 	'G' => 0,
@@ -24,9 +29,13 @@ $white = [
 
 // Test cases.
 $colorsToConvert = array(
-	'blue'  => [ // rgb(0, 158, 204): Thanks for the example, @strarsis.
+	'blue'  => [ // rgb(0, 158, 204)
 		'hex' => '009ecc',
 		'rgb' => $blue,
+	],
+	'yellow' => [ // rgb(244, 231, 15)
+		'hex' => 'f4e70f',
+		'rgb' => $yellow,
 	],
 	'black' => [
 		'hex' => '000000',

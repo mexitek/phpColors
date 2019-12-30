@@ -179,9 +179,9 @@ class Color {
 
 
     /**
-     *  Given an RGB associative array returns the equivalent HEX string
+     * Given an RGB associative array returns the equivalent HEX string
      * @param array $rgb
-     * @return string RGB string
+     * @return string Hex string
      * @throws Exception "Bad RGB Array"
      */
     public static function rgbToHex( $rgb = array() ){
@@ -196,9 +196,33 @@ class Color {
         $hex[1] = str_pad(dechex($rgb['G']), 2, '0', STR_PAD_LEFT);
         $hex[2] = str_pad(dechex($rgb['B']), 2, '0', STR_PAD_LEFT);
 
+        // Make sure that 2 digits are allocated to each color.
+        $hex[0] = (strlen($hex[0]) == 1)? '0'.$hex[0] : $hex[0];
+        $hex[1] = (strlen($hex[1]) == 1)? '0'.$hex[1] : $hex[1];
+        $hex[2] = (strlen($hex[2]) == 1)? '0'.$hex[2] : $hex[2];
+
         return implode( '', $hex );
 
-  }
+    }
+
+    /**
+     * Given an RGB associative array, returns CSS string output.
+     * @param array $rgb
+     * @return string rgb(r,g,b) string
+     * @throws Exception "Bad RGB Array"
+     */
+    public static function rgbToString( $rgb = array() ){
+         // Make sure it's RGB
+        if(empty($rgb) || !isset($rgb["R"]) || !isset($rgb["G"]) || !isset($rgb["B"]) ) {
+            throw new Exception("Param was not an RGB array");
+        }
+
+        return 'rgb('.
+            $rgb['R'] . ', ' .
+            $rgb['G'] . ', ' .
+            $rgb['B'] . ')';
+    }
+
 
 
     /**

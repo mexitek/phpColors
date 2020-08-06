@@ -1,4 +1,10 @@
-### Last Build: [![Build Status](https://secure.travis-ci.org/mexitek/phpColors.png)](http://travis-ci.org/mexitek/phpColors)
+# PHPColors [![Build Status](https://travis-ci.org/mexitek/phpColors.svg?branch=master)](https://travis-ci.org/mexitek/phpColors)
+
+> A series of methods that let you manipulate colors. Just incase you ever need different shades of one color on the fly.
+
+## Requirements
+
+PHPColors requires PHP version 7.2.0 or greater.
 
 ## Installation
 
@@ -6,7 +12,9 @@
 
 Simply add `mexitek/phpcolors` to `composer.json` using `dev-master`.
 
-`composer require mexitek/phpcolors dev-master`
+```
+composer require mexitek/phpcolors:dev-master
+```
 
 ## How it works
 Instantiate an object of the color class with a hex color string `$foo = new Color("336699")`.  That's it!  Now, call the methods you need for different color variants.
@@ -14,7 +22,7 @@ Instantiate an object of the color class with a hex color string `$foo = new Col
 ## Available Methods
 - <strong>darken( [$amount] )</strong> : Allows you to obtain a darker shade of your color. Optionally you can decide to darken using a desired percentage.
 - <strong>lighten( [$amount] )</strong> : Allows you to obtain a lighter shade of your color. Optionally you can decide to lighten using a desired percentage.
-- <strong>mix($hex, [$amount] )</strong> : Allows you to mix another color to your color. Optionally you can decide to set the percent of second color or original color amount is ranged -100..0.100.
+- <strong>mix($hex, [$amount] )</strong> : Allows you to mix another color to your color. Optionally you can decide to set the percent of second color or original color amount is ranged -100...0...100.
 - <strong>isLight( [$hex] )</strong> : Determins whether your color (or the provide param) is considered a "light" color. Returns `TRUE` if color is light.
 - <strong>isDark( [$hex] )</strong> : Determins whether your color (or the provide param) is considered a "dark" color. Returns `TRUE` if color is dark.
 - <strong>makeGradient( [$amount] )</strong> : Returns an array with 2 indices `light` and `dark`, the initial color will either be selected for `light` or `dark` depending on its brightness, then the other color will be generated.  The optional param allows for a static lighten or darkened amount.
@@ -110,8 +118,8 @@ echo $myBlue->getCssGradient();
   background: #336699;
 
   // IE Browsers
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699'); 
- 
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699');
+
   // Safari 5.1+, Mobile Safari, Chrome 10+
   background-image: -webkit-linear-gradient(top, #8cb3d9, #336699);
 
@@ -132,7 +140,7 @@ $myBlue = new Color("#336699");
 // Get CSS
 echo $myBlue->getCssGradient(10, TRUE);
 /* - Actual output doesn't have comments and is single line
-  
+
   background: #336699; // fallback background
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb3d9', endColorstr='#336699'); // IE Browsers
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8cb3d9), to(#336699)); // Safari 4+, Chrome 1-9
@@ -149,7 +157,7 @@ echo $myBlue->getCssGradient(10, TRUE);
 - mexitek
 - danielpataki
 - alexmglover
-- intuxicated 
+- intuxicated
 - pborreli
 - curtisgibby
 - matthewpatterson
@@ -160,4 +168,5 @@ echo $myBlue->getCssGradient(10, TRUE);
 - thedavidmeister
 - tylercd100
 
-# License: [arlo.mit-license.org](http://arlo.mit-license.org)
+# License
+See LICENSE file or [arlo.mit-license.org](http://arlo.mit-license.org)

@@ -528,7 +528,7 @@ class Color
         $color = str_replace("#", "", $hex);
 
         // Validate hex string
-        if (!preg_match('/^[a-fA-F0-9]+$/', $hex)) {
+        if (!preg_match('/^[a-fA-F0-9]+$/', $color)) {
             throw new Exception("HEX color does not match format");
         }
 

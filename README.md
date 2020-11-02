@@ -167,6 +167,7 @@ echo $myBlue->getCssGradient(10, TRUE);
 - primozcigler
 - thedavidmeister
 - tylercd100
+- [Braunson](https://github.com/braunson)
 
 # License
 See LICENSE file or [arlo.mit-license.org](http://arlo.mit-license.org)

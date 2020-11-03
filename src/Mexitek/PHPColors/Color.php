@@ -249,7 +249,7 @@ class Color
             'beige' => 'F5F5DC',
             'bisque' => 'FFE4C4',
             'black' => '000000',
-            'blanchedalmond ' => 'FFEBCD',
+            'blanchedalmond' => 'FFEBCD',
             'blue' => '0000FF',
             'blueviolet' => '8A2BE2',
             'brown' => 'A52A2A',

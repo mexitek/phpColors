@@ -395,7 +395,7 @@ class Color
             return '#' . $colors[$color_name];
         }
 
-        return ($color_name);
+        return $color_name;
     }
 
     /**

@@ -157,7 +157,7 @@ $colorsToConvert = array(
 );
 
 foreach ($colorsToConvert as $name => $hex) {
-    $hex = '#'. $hex;
+    $hex = '#' . $hex;
 
     $answer = Color::nameToHex($name);
     Assert::same(

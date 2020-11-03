@@ -392,7 +392,7 @@ class Color
 
         $color_name = strtolower($color_name);
         if (isset($colors[$color_name])) {
-            return ('#' . $colors[$color_name]);
+            return '#' . $colors[$color_name];
         }
 
         return ($color_name);

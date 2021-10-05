@@ -149,9 +149,9 @@ class Color
         }
 
         // Convert to hex
-        $r = dechex($r);
-        $g = dechex($g);
-        $b = dechex($b);
+        $r = dechex((int)$r);
+        $g = dechex((int)$g);
+        $b = dechex((int)$b);
 
         // Make sure we get 2 digits for decimals
         $r = (strlen("" . $r) === 1) ? "0" . $r : $r;
@@ -201,9 +201,9 @@ class Color
 
         // https://github.com/mexitek/phpColors/issues/25#issuecomment-88354815
         // Convert RGB to HEX
-        $hex[0] = str_pad(dechex($rgb['R']), 2, '0', STR_PAD_LEFT);
-        $hex[1] = str_pad(dechex($rgb['G']), 2, '0', STR_PAD_LEFT);
-        $hex[2] = str_pad(dechex($rgb['B']), 2, '0', STR_PAD_LEFT);
+        $hex[0] = str_pad(dechex((int)$rgb['R']), 2, '0', STR_PAD_LEFT);
+        $hex[1] = str_pad(dechex((int)$rgb['G']), 2, '0', STR_PAD_LEFT);
+        $hex[2] = str_pad(dechex((int)$rgb['B']), 2, '0', STR_PAD_LEFT);
 
         // Make sure that 2 digits are allocated to each color.
         $hex[0] = (strlen($hex[0]) === 1) ? '0' . $hex[0] : $hex[0];

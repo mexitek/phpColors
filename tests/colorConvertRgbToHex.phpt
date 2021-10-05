@@ -60,4 +60,13 @@ foreach ($colorsToConvert as $color) {
         '" should convert to "' . $hex .
         '", but output was: "' . $answer . '".'
     );
+
+    $revertAnswer = Color::hexToRgb($hex);
+    Assert::same(
+        $rgb,
+        $revertAnswer,
+        'Incorrect rgb result: "' . $hex .
+        '" should convert to "' . Color::rgbToString($rgb) .
+        '", but output was: "' . Color::rgbToString($revertAnswer) . '".'
+    );
 }

@@ -47,7 +47,7 @@ $colorsToConvert = array(
         'hsl' => $black,
     ],
     'grey' => [
-        'hex' => 'a5a5a5',
+        'hex' => 'a6a6a6',
         'hsl' => $grey,
     ],
     'white' => [

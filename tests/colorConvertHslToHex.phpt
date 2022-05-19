@@ -33,7 +33,7 @@ $white = [
 ];
 
 // Test cases.
-$colorsToConvert = array(
+$colorsToConvert = [
     'blue' => [ // hsl(194, 100%, 40%)
         'hex' => '009ccc',
         'hsl' => $blue,
@@ -54,8 +54,7 @@ $colorsToConvert = array(
         'hex' => 'ffffff',
         'hsl' => $white,
     ],
-);
-
+];
 
 foreach ($colorsToConvert as $color) {
     $hsl = $color['hsl'];
